@@ -7,6 +7,8 @@ module('Integration | Component | menu', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders all passed childs and has correct classes', async function (assert) {
+    assert.expect(3);
+
     const testData = {
       class: 'test-class-name',
     };
@@ -21,7 +23,7 @@ module('Integration | Component | menu', function (hooks) {
 
     assert
       .dom('[data-test-menu]')
-      .hasClass('Menu')
+      .hasClass('menu')
       .hasClass(testData.class, 'It has passed class');
 
     assert.dom('[data-test-div]').exists('The child is rendered');

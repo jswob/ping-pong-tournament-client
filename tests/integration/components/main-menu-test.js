@@ -7,6 +7,8 @@ module('Integration | Component | main-menu', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders title and all links', async function (assert) {
+    assert.expect(4);
+
     const testData = {
       class: 'test-class-name',
     };
@@ -20,9 +22,9 @@ module('Integration | Component | main-menu', function (hooks) {
     assert
       .dom('[data-test-main-menu]')
       .exists()
-      .hasClass('MainMenu')
+      .hasClass('main-menu')
       .hasClass(testData.class, 'It has passed class');
 
-    assert.dom('[data-test-main-menu] > h1').hasText('Ping Pong Tournament');
+    assert.dom('[data-test-main-menu-h1]').hasText('Ping Pong Tournament');
   });
 });

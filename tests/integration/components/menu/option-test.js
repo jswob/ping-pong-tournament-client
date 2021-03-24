@@ -22,7 +22,7 @@ module('Integration | Component | menu/option', function (hooks) {
     assert
       .dom('[data-test-option="0"]')
       .hasText(testData.label)
-      .hasClass('MenuOption')
+      .hasClass('menu-option')
       .hasClass(testData.class, 'Custom class is added');
   });
 });
