@@ -1,0 +1,48 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.main-menu {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-option {
+  display: block;
+  font-size: 20px;
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  max-width: 60%;
+  width: 100%;
+  min-width: 200px;
+  margin-top: 10px;
+  transition: 0.5s;
+}
+
+.menu-option:first-child {
+  margin-top: 0px;
+}
+
+.menu-option:hover {
+  background-color: rgb(179, 179, 179);
+}
+
+.menu-option:active {
+  transition: 0s;
+  background-color: rgb(146, 146, 146);
+}
