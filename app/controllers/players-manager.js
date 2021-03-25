@@ -9,7 +9,7 @@ export default class PlayersManagerController extends Controller {
   createMode = false;
 
   @action
-  switchCreateModeHandler() {
+  switchCreateMode() {
     this.createMode = !this.createMode;
   }
 }

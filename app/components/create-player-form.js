@@ -10,8 +10,7 @@ export default class CreatePlayerFormComponent extends Component {
   nickname = '';
 
   @action
-  async createPlayerHandler(event) {
-    // Stops submit event from reloading page
+  async createPlayer(event) {
     event.preventDefault();
 
     const { nickname, args } = this;
@@ -19,9 +18,7 @@ export default class CreatePlayerFormComponent extends Component {
     try {
       if (!nickname.length) return;
 
-      args.switchModeHandler();
-
-      this.nickname = '';
+      this._refreshForm(args);
 
       const createdPlayer = this.store.createRecord('player', {
         nickname: nickname,
@@ -32,4 +29,14 @@ export default class CreatePlayerFormComponent extends Component {
       throw error;
     }
   }
+
+  @action
+  setNickname(event) {
+    this.nickname = event.target.value;
+  }
+
+  _refreshForm = ({switchMode}) => {
+    this.nickname = '';
+    switchMode();
+  };
 }

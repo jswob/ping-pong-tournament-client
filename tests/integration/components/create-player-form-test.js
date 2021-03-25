@@ -22,7 +22,7 @@ module('Integration | Component | create-player-form', function (hooks) {
     this.setProperties(testData);
 
     await render(
-      hbs`<CreatePlayerForm data-test-create-player-form class={{this.class}} @createMode={{this.createMode}} @switchModeHandler={{this.testAction}} />`
+      hbs`<CreatePlayerForm data-test-create-player-form class={{this.class}} @createMode={{this.createMode}} @switchMode={{this.testAction}} />`
     );
 
     assert
@@ -73,8 +73,8 @@ module('Integration | Component | create-player-form', function (hooks) {
     };
 
     const testData = {
-      switchModeHandler: () => {
-        assert.ok(true, 'Passed switchModeHandler has been invoked');
+      switchMode: () => {
+        assert.ok(true, 'Passed switchMode has been invoked');
         this.set('createMode', !this.createMode);
       },
     };
@@ -84,7 +84,7 @@ module('Integration | Component | create-player-form', function (hooks) {
     assert.equal(store.peekAll('player').length, 0, 'It starts with 0 player');
 
     await render(
-      hbs`<CreatePlayerForm data-test-create-player-form @createMode={{this.createMode}} @switchModeHandler={{this.switchModeHandler}} />`
+      hbs`<CreatePlayerForm data-test-create-player-form @createMode={{this.createMode}} @switchMode={{this.switchMode}} />`
     );
 
     await click('[data-test-switch-button]');

@@ -20,8 +20,6 @@ module('Acceptance | players manager', function (hooks) {
 
     await visit('/players-manager');
 
-    console.log(this.store.peekAll('player').length);
-
     assert
       .dom('[data-test-single-player]')
       .exists(
