@@ -1,0 +1,6 @@
+<div ...attributes class="players-list">
+    <h3 data-test-header class="header">Players list</h3>
+    {{#each @players as |player|}}
+    <div class="single-player" data-test-single-player>{{player.nickname}}</div>
+    {{/each}}
+</div>
