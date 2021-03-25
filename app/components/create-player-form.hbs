@@ -1,0 +1,9 @@
+<form ...attributes {{on 'submit' this.createPlayerHandler}} class="create-player-form">
+    {{#if @createMode}}
+    <Input data-test-nickname-input class="nickname-input" @value={{this.nickname}} placeholder="Nickname" />
+    <button data-test-submit-button class="submit-button" type="submit">{{md-icon "person_add"}}</button>
+    {{else}}
+    <button data-test-switch-button class="switch-button" type="button" {{on "click" @switchModeHandler}}>Add
+        player</button>
+    {{/if}}
+</form>
