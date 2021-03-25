@@ -1,4 +1,4 @@
-<form ...attributes {{on 'submit' this.createPlayer}} class="create-player-form">
+<form ...attributes {{on 'submit' (perform this.createPlayer)}} class="create-player-form">
     {{#if @createMode}}
         <input 
             data-test-nickname-input 
