@@ -1,5 +1,5 @@
 import Component from '@glimmer/component';
-import { action } from '@ember/object';
+import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { dropTask } from 'ember-concurrency';
@@ -10,19 +10,25 @@ export default class CreatePlayerFormComponent extends Component {
   @tracked
   nickname = '';
 
+  
+  @computed("nickname", "args.createMode") 
+  get nicknameError() {
+    if (!this.args.createMode) return null;
+    else if(!this.nickname.length) return "Nickname can't be blank!";
+    return null;
+  }
+
   @dropTask
   *createPlayer(event) {
     event.preventDefault();
 
-    const { nickname, args } = this;
-
-    if (!nickname.length) return;
-
-    this._refreshForm(args);
+    if (this.nicknameError) return;
 
     const createdPlayer = this.store.createRecord('player', {
-      nickname: nickname,
+      nickname: this.nickname,
     });
+
+    this.refreshForm();
 
     yield createdPlayer.save();
   }
@@ -32,8 +38,8 @@ export default class CreatePlayerFormComponent extends Component {
     this.nickname = event.target.value;
   }
 
-  _refreshForm = ({ switchMode }) => {
+  refreshForm = () => {
     this.nickname = '';
-    switchMode();
+    this.args.switchMode();
   };
 }

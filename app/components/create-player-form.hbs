@@ -1,22 +1,26 @@
 <form ...attributes {{on 'submit' (perform this.createPlayer)}} class="create-player-form">
-    {{#if @createMode}}
-        <input 
-            data-test-nickname-input 
-            class="nickname-input" 
-            value={{this.nickname}} 
-            placeholder="Nickname"
-            {{on "change" this.setNickname}} 
-        />
-        <button 
-            data-test-submit-button class="submit-button" type="submit">{{md-icon "person_add"}}</button>
-    {{else}}
-        <button 
-            data-test-switch-button 
-            class="switch-button" 
-            type="button" 
-            {{on "click" @switchMode}}
-        >
-            Add player
-        </button>
-    {{/if}}
+    <div class="content {{if @createMode "create-mode"}}">
+        {{#if @createMode}}
+            <input 
+                data-test-nickname-input 
+                class="nickname-input" 
+                value={{this.nickname}} 
+                placeholder="Nickname"
+                {{on "change" this.setNickname}} 
+            />
+            <button 
+                data-test-submit-button class="submit-button" type="submit">{{md-icon "person_add"}}</button>
+        {{else}}
+            <button 
+                data-test-switch-button 
+                class="switch-button" 
+                type="button" 
+                {{on "click" @switchMode}}
+            >
+                Add player
+            </button>
+        {{/if}}
+    </div>
+    
+    <ValidationError @error={{this.nicknameError}} />
 </form>
