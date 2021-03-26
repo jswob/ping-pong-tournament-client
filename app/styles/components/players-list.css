@@ -1,0 +1,11 @@
+.players-list {
+  @apply mt-5 flex flex-col items-center;
+}
+
+.players-list > .header {
+  @apply text-2xl font-bold;
+}
+
+.players-list > .single-player {
+  @apply border-2 w-1/2 block mt-3 pt-2 pb-2 rounded-default bg-gray-300;
+}

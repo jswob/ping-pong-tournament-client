@@ -1,49 +1,27 @@
-/* font */
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap');
 
-/* tailwind stuff */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-/* @import "components.css"; */
-/* @import "utilities.css"; */
+@import './components/create-player-form.css';
+@import './components/menu.css';
+@import './components/menu/menu-option.css';
+@import './components/page-layout.css';
+@import './components/players-list.css';
+@import './components/validation-error.css';
+
+button:focus,
+button:active,
+input:focus,
+input:active {
+  outline: none;
+  @apply border-0;
+}
 
 html,
 body {
   font-family: 'Lato', sans-serif;
 
   @apply m-0 p-0;
-}
-
-.main-menu {
-  @apply max-w-screen-sm m-auto text-center;
-}
-
-.main-menu > .main-header {
-  @apply text-3xl mt-4 mb-4;
-}
-
-.menu {
-  @apply flex flex-col items-center;
-}
-
-.menu-option {
-  transition: 0.5s;
-
-  @apply text-xl font-bold p-3 w-3/5 min-w-0 mt-4 rounded-lg border-2;
-}
-
-.menu-option:first-child {
-  @apply mt-0;
-}
-
-.menu-option:hover {
-  @apply bg-gray-400;
-}
-
-.menu-option:active {
-  transition: 0s;
-
-  @apply bg-gray-500;
 }

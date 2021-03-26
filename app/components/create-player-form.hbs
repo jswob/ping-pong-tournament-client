@@ -1,0 +1,35 @@
+<form ...attributes {{on 'submit' (perform this.createPlayer)}} class="create-player-form">
+    <div class="content {{if @createMode "create-mode"}}">
+        {{#if @createMode}}
+            <input 
+                data-test-nickname-input 
+                class="nickname-input" 
+                value={{this.changeset.nickname}} 
+                placeholder="Nickname"
+                {{on "change" this.setNickname}} 
+            />
+            <button 
+                data-test-submit-button 
+                class="submit-button" 
+                type="submit"
+            >
+                {{md-icon "person_add"}}
+            </button>
+        {{else}}
+            <button 
+                data-test-switch-button 
+                class="switch-button" 
+                type="button" 
+                {{on "click" @switchMode}}
+            >
+                Add player
+            </button>
+        {{/if}}
+    </div>
+    
+    {{#if @createMode}}
+        {{#each this.changeset.errors as |error|}}
+            <ValidationError @error={{error.validation}} />
+        {{/each}}
+    {{/if}}
+</form>

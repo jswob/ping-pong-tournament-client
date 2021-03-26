@@ -1,0 +1,8 @@
+{{page-title "PlayersManager"}}
+
+<PageLayout class="players-manager" @title="Players manager">
+    <CreatePlayerForm data-test-create-player-form @createMode={{this.createMode}}
+        @switchMode={{this.switchCreateMode}} />
+
+    <PlayersList @players={{this.model}} />
+</PageLayout>
