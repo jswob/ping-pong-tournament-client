@@ -88,7 +88,7 @@ module('Integration | Component | create-player-form', function (hooks) {
 
     assert
       .dom('[data-test-validation-error]')
-      .hasText("Nickname can't be blank!");
+      .hasText("Nickname can't be blank");
 
     assert.equal(store.findAll('player').length, 0, "User hasn't been created");
     })

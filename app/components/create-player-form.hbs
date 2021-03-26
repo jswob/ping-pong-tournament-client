@@ -4,7 +4,7 @@
             <input 
                 data-test-nickname-input 
                 class="nickname-input" 
-                value={{this.nickname}} 
+                value={{this.changeset.nickname}} 
                 placeholder="Nickname"
                 {{on "change" this.setNickname}} 
             />
@@ -27,5 +27,9 @@
         {{/if}}
     </div>
     
-    <ValidationError @error={{this.nicknameError}} />
+    {{#if @createMode}}
+        {{#each this.changeset.errors as |error|}}
+            <ValidationError @error={{error.validation}} />
+        {{/each}}
+    {{/if}}
 </form>

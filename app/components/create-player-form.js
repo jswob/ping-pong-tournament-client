@@ -3,42 +3,51 @@ import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { dropTask } from 'ember-concurrency';
+import PlayerValidations from '../validations/player';
+import Changeset from 'ember-changeset';
+import lookupValidator from 'ember-changeset-validations';
 
 export default class CreatePlayerFormComponent extends Component {
   @service store;
 
   @tracked
-  nickname = '';
+  player = { nickname: null };
 
-  @computed('nickname', 'args.createMode')
-  get nicknameError() {
-    if (this.args.createMode && !this.nickname.length)
-      return "Nickname can't be blank!";
-    return null;
+  @computed('player')
+  get changeset() {
+    const changeset = new Changeset(
+      this.player,
+      lookupValidator(PlayerValidations)
+    );
+
+    changeset.set('nickname', '');
+
+    return changeset;
   }
 
   @dropTask
   *createPlayer(event) {
     event.preventDefault();
 
-    if (this.nicknameError) return;
+    const { changeset } = this;
 
-    const createdPlayer = this.store.createRecord('player', {
-      nickname: this.nickname,
-    });
-
-    this.refreshForm();
-
-    yield createdPlayer.save();
+    if (!changeset.isValid) return;
+    
+    changeset.execute()
+    
+    this.args.switchMode();
+    
+    yield this.store.createRecord('player', this.player).save();
+    
+    this.refreshPlayerModel();
   }
 
   @action
   setNickname(event) {
-    this.nickname = event.target.value;
+    this.changeset.set('nickname', event.target.value);
   }
 
-  refreshForm = () => {
-    this.nickname = '';
-    this.args.switchMode();
-  };
+  refreshPlayerModel() {
+    this.player = { nickname: null };
+  }
 }
