@@ -9,6 +9,14 @@
 /* @import "components.css"; */
 /* @import "utilities.css"; */
 
+button:focus,
+button:active,
+input:focus,
+input:active {
+  outline: none;
+  @apply border-0;
+}
+
 html,
 body {
   font-family: 'Lato', sans-serif;
@@ -16,12 +24,12 @@ body {
   @apply m-0 p-0;
 }
 
-.main-menu {
+.page-layout {
   @apply max-w-screen-sm m-auto text-center;
 }
 
-.main-menu > .main-header {
-  @apply text-3xl mt-4 mb-4;
+.page-layout > .main-header {
+  @apply text-3xl mt-4 mb-4 font-bold;
 }
 
 .menu {
@@ -46,4 +54,63 @@ body {
   transition: 0s;
 
   @apply bg-gray-500;
+}
+
+.players-list {
+  @apply mt-5 flex flex-col items-center;
+}
+
+.players-list > .header {
+  @apply text-2xl font-bold;
+}
+
+.players-list > .single-player {
+  @apply border-2 w-1/2 block mt-3 pt-2 pb-2 rounded-default bg-gray-300;
+}
+
+.create-player-form {
+  @apply mt-3 w-1/2 ml-auto mr-auto;
+}
+
+.create-player-form > .content {
+  padding: 5 0 5 0;
+  transition: 0.5;
+
+  @apply flex flex-row items-stretch h-10 items-start w-full m-0 border-2 border-green-800 rounded-default text-left;
+}
+
+.create-player-form > .content.create-mode {
+  @apply border-blue-500;
+}
+
+.create-player-form > .content > input {
+  @apply block w-5/6 pl-3;
+}
+
+.create-player-form > .content > .switch-button {
+  @apply h-full w-full text-center bg-green-300;
+}
+
+.create-player-form > .content > .switch-button:hover {
+  @apply bg-green-400;
+}
+
+.create-player-form > .content > .switch-button:active {
+  @apply bg-green-500;
+}
+
+.create-player-form > .content > .submit-button {
+  @apply h-full text-center flex-row items-stretch flex-grow-default;
+}
+
+.create-player-form > .content > .submit-button > i {
+  @apply pt-1;
+}
+
+.create-player-form > .content:focus-within {
+  box-shadow: 0 0 5pt 0.5pt #bc9bfa;
+}
+
+.validation-error {
+  @apply text-red-700 font-bold mt-2;
 }
