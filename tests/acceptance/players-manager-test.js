@@ -37,14 +37,14 @@ module('Acceptance | players manager', function (hooks) {
       .dom('[data-test-single-player]')
       .exists({ count: 5 }, `It starts with 5 players`);
 
-    await click('[data-test-create-player-form] > [data-test-switch-button]');
+    await click('[data-test-switch-button]');
 
     await fillIn(
-      '[data-test-create-player-form] > [data-test-nickname-input]',
+      '[data-test-nickname-input]',
       'dummy text'
     );
 
-    await click('[data-test-create-player-form] > [data-test-submit-button]');
+    await click('[data-test-submit-button]');
 
     assert
       .dom('[data-test-single-player]')
