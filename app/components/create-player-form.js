@@ -10,11 +10,10 @@ export default class CreatePlayerFormComponent extends Component {
   @tracked
   nickname = '';
 
-  
-  @computed("nickname", "args.createMode") 
+  @computed('nickname', 'args.createMode')
   get nicknameError() {
-    if (!this.args.createMode) return null;
-    else if(!this.nickname.length) return "Nickname can't be blank!";
+    if (this.args.createMode && !this.nickname.length)
+      return "Nickname can't be blank!";
     return null;
   }
 
