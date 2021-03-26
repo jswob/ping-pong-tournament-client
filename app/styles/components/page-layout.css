@@ -1,0 +1,7 @@
+.page-layout {
+  @apply max-w-screen-sm m-auto text-center;
+}
+
+.page-layout > .main-header {
+  @apply text-3xl mt-4 mb-4 font-bold;
+}

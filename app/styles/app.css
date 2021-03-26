@@ -1,13 +1,15 @@
-/* font */
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap');
 
-/* tailwind stuff */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-/* @import "components.css"; */
-/* @import "utilities.css"; */
+@import './components/create-player-form.css';
+@import './components/menu.css';
+@import './components/menu/menu-option.css';
+@import './components/page-layout.css';
+@import './components/players-list.css';
+@import './components/validation-error.css';
 
 button:focus,
 button:active,
@@ -22,95 +24,4 @@ body {
   font-family: 'Lato', sans-serif;
 
   @apply m-0 p-0;
-}
-
-.page-layout {
-  @apply max-w-screen-sm m-auto text-center;
-}
-
-.page-layout > .main-header {
-  @apply text-3xl mt-4 mb-4 font-bold;
-}
-
-.menu {
-  @apply flex flex-col items-center;
-}
-
-.menu-option {
-  transition: 0.5s;
-
-  @apply text-xl font-bold p-3 w-3/5 min-w-0 mt-4 rounded-lg border-2;
-}
-
-.menu-option:first-child {
-  @apply mt-0;
-}
-
-.menu-option:hover {
-  @apply bg-gray-400;
-}
-
-.menu-option:active {
-  transition: 0s;
-
-  @apply bg-gray-500;
-}
-
-.players-list {
-  @apply mt-5 flex flex-col items-center;
-}
-
-.players-list > .header {
-  @apply text-2xl font-bold;
-}
-
-.players-list > .single-player {
-  @apply border-2 w-1/2 block mt-3 pt-2 pb-2 rounded-default bg-gray-300;
-}
-
-.create-player-form {
-  @apply mt-3 w-1/2 ml-auto mr-auto;
-}
-
-.create-player-form > .content {
-  padding: 5 0 5 0;
-  transition: 0.5;
-
-  @apply flex flex-row items-stretch h-10 items-start w-full m-0 border-2 border-green-800 rounded-default text-left;
-}
-
-.create-player-form > .content.create-mode {
-  @apply border-blue-500;
-}
-
-.create-player-form > .content > input {
-  @apply block w-5/6 pl-3;
-}
-
-.create-player-form > .content > .switch-button {
-  @apply h-full w-full text-center bg-green-300;
-}
-
-.create-player-form > .content > .switch-button:hover {
-  @apply bg-green-400;
-}
-
-.create-player-form > .content > .switch-button:active {
-  @apply bg-green-500;
-}
-
-.create-player-form > .content > .submit-button {
-  @apply h-full text-center flex-row items-stretch flex-grow-default;
-}
-
-.create-player-form > .content > .submit-button > i {
-  @apply pt-1;
-}
-
-.create-player-form > .content:focus-within {
-  box-shadow: 0 0 5pt 0.5pt #bc9bfa;
-}
-
-.validation-error {
-  @apply text-red-700 font-bold mt-2;
 }

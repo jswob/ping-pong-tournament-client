@@ -1,0 +1,19 @@
+.menu-option {
+  transition: 0.5s;
+
+  @apply text-xl font-bold p-3 w-3/5 min-w-0 mt-4 rounded-lg border-2;
+}
+
+.menu-option:first-child {
+  @apply mt-0;
+}
+
+.menu-option:hover {
+  @apply bg-gray-400;
+}
+
+.menu-option:active {
+  transition: 0s;
+
+  @apply bg-gray-500;
+}
