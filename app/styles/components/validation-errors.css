@@ -1,0 +1,3 @@
+.validation-errors > .validation-error {
+  @apply text-red-700 font-bold mt-2;
+}

@@ -9,7 +9,7 @@
 @import './components/menu/menu-option.css';
 @import './components/page-layout.css';
 @import './components/players-list.css';
-@import './components/validation-error.css';
+@import './components/validation-errors.css';
 
 button:focus,
 button:active,
