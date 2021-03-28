@@ -1,0 +1,15 @@
+<div 
+    ...attributes 
+    data-test-setup-game-form-option 
+    class="setup-game-form-option"
+>
+    {{#if @title}}
+        <h4 data-test-header class="header">{{@title}}</h4>
+    {{/if}}
+
+    <div data-test-content class="content">
+        {{yield}}
+    </div>
+
+    <ValidationErrors @errors={{@errors}} @key={{@key}} />
+</div>
