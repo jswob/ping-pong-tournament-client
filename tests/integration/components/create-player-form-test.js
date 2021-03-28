@@ -36,18 +36,12 @@ module('Integration | Component | create-player-form', function (hooks) {
       .exists({ count: 1 })
       .hasClass('switch-button')
       .hasText('Add player');
-    assert
-      .dom('[data-test-nickname-input')
-      .doesNotExist();
-    assert
-      .dom('[data-test-submit-button]')
-      .doesNotExist();
+    assert.dom('[data-test-nickname-input').doesNotExist();
+    assert.dom('[data-test-submit-button]').doesNotExist();
 
     this.set('createMode', true);
 
-    assert
-      .dom('[data-test-switch-button]')
-      .doesNotExist();
+    assert.dom('[data-test-switch-button]').doesNotExist();
     assert
       .dom('[data-test-nickname-input')
       .exists({ count: 1 })
@@ -91,5 +85,43 @@ module('Integration | Component | create-player-form', function (hooks) {
       .hasText("Nickname can't be blank");
 
     assert.equal(store.findAll('player').length, 0, "User hasn't been created");
-    })
+  });
+
+  test('It ables user to create a new player', async function (assert) {
+    assert.expect(3);
+
+    const userData = { nickname: 'some nickname' };
+
+    const store = this.owner.lookup('service:store');
+
+    this.set('createMode', true);
+
+    assert.equal(
+      store.findAll('player').length,
+      0,
+      'By default there are no players'
+    );
+
+    await render(
+      hbs`<CreatePlayerForm 
+            data-test-create-player-form 
+            @createMode={{this.createMode}} 
+            @switchMode={{this.testAction}} 
+          />`
+    );
+
+    await fillIn('[data-test-nickname-input]', userData.nickname);
+
+    await click('[data-test-submit-button]');
+
+    const users = await store.findAll('player');
+
+    assert.equal(users.length, 1, 'User has been created');
+
+    assert.equal(
+      users.firstObject.nickname,
+      userData.nickname,
+      'Created user has correct data'
+    );
+  });
 });
