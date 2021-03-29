@@ -1,0 +1,29 @@
+<div ...attributes data-test-players-settings class="players-settings">
+    <SetupGameForm::Option 
+        data-test-player1-option 
+        @errors={{@changeset.errors}} 
+        @key="player1"
+    >
+        <PowerSelect 
+            @options={{@players}} 
+            @selected={{@changeset.player1}} 
+            @onChange={{fn @update @changeset "player1" }} 
+            as |player|
+        >
+            {{player.nickname}}
+        </PowerSelect>
+    </SetupGameForm::Option>
+    
+    <span data-test-vs-span class="vs-span">VS</span>
+    
+    <SetupGameForm::Option data-test-player2-option @errors={{@changeset.errors}} @key="player2">
+        <PowerSelect 
+            @options={{@players}} 
+            @selected={{@changeset.player2}} 
+            @onChange={{fn @update @changeset "player2" }} 
+            as |player|
+        >
+            {{player.nickname}}
+        </PowerSelect>
+    </SetupGameForm::Option>
+</div>
