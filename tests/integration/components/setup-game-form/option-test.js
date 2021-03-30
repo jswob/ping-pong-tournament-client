@@ -13,9 +13,8 @@ module('Integration | Component | setup-game-form/option', function (hooks) {
       title: 'some title',
       class: 'test-class',
       errors: [
-        { key: 'test', validation: 'validation' },
+        { key: 'test', validation: ['validation 1', 'validation 2'] },
         { key: 'fdsaf', validation: 'validation' },
-        { key: 'test', validation: 'validation' },
       ],
       key: 'test',
     };
@@ -53,7 +52,7 @@ module('Integration | Component | setup-game-form/option', function (hooks) {
     assert
       .dom('[data-test-validation-error]')
       .exists({ count: 2 })
-      .hasText(testData.errors[0].validation);
+      .hasText(testData.errors[0].validation[0]);
 
     this.set('title', null);
 

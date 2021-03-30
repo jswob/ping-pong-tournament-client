@@ -63,46 +63,6 @@ module(
         .exists();
     });
 
-    test('it shows selected options correctly', async function (assert) {
-      assert.expect(4);
-
-      this.set('action', (changeset, key, value) => {
-        assert.ok(true, 'Passed update action has been invoked');
-
-        changeset[key] = value;
-      });
-
-      assert
-        .dom('[data-test-player1-option] .ember-basic-dropdown-trigger')
-        .hasNoText('In the beginning first select is empty');
-
-      assert
-        .dom('[data-test-player2-option] .ember-basic-dropdown-trigger')
-        .hasNoText('In the beginning second select is empty');
-
-      this.set('changeset', {
-        player1: { nickname: 'player1' },
-        player2: { nickname: 'player2' },
-        errors: [],
-        validate: () => {},
-        changes: [],
-      });
-
-      assert
-        .dom('[data-test-player1-option] .ember-basic-dropdown-trigger')
-        .hasText(
-          this.changeset.player1.nickname,
-          'If player1 is selected, selcect 1 shows its nickname'
-        );
-
-      assert
-        .dom('[data-test-player2-option] .ember-basic-dropdown-trigger')
-        .hasText(
-          this.changeset.player2.nickname,
-          'If player2 is selected, selcect 2 shows its nickname'
-        );
-    });
-
     test('it opens selects correctly, and shows expected data', async function (assert) {
       assert.expect(7);
 
@@ -207,7 +167,6 @@ module(
       await click('[data-test-player1-option] .ember-basic-dropdown-trigger');
 
       await click('ul > li:last-child');
-
     });
   }
 );

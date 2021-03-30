@@ -56,7 +56,7 @@ module(
 
       assert.dom('[data-test-validation-error]').doesNotExist();
 
-      this.set('changeset', { errors: [{ key: 'sets', validation: '' }] });
+      this.set('changeset', { errors: [{ key: 'sets', validation: 'dsafas' }] });
 
       assert
         .dom('[data-test-sets-option] [data-test-validation-error]')
@@ -66,7 +66,7 @@ module(
         .doesNotExist();
 
       this.set('changeset', {
-        errors: [{ key: 'pointsToWin', validation: '' }],
+        errors: [{ key: 'pointsToWin', validation: 'fasd' }],
       });
 
       assert

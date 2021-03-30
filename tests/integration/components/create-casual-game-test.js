@@ -121,7 +121,7 @@ module('Integration | Component | create-casual-game', function (hooks) {
   });
 
   test('if there are no errors, invokes callback with game data as argument', async function (assert) {
-    assert.expect(160);
+    assert.expect(6);
 
     const testData = {
       sets: 5,
