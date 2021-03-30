@@ -82,9 +82,7 @@ module('Integration | Component | setup-game-form', function (hooks) {
     const testData = {
       changeset: {
         isValid: false,
-        validate: () => {
-          assert.ok(true, 'Changeset validate method has been invoked');
-        },
+        validate: () => {}
       },
       callback: (changeset) => {
         assert.ok(
@@ -105,7 +103,12 @@ module('Integration | Component | setup-game-form', function (hooks) {
 
     await click('[data-test-submit-button]');
 
-    this.set('changeset', { isValid: true });
+    this.set('changeset', {
+      isValid: true,
+      validate: () => {
+        assert.ok(true, 'Changeset validate method has been invoked');
+      },
+    });
 
     await click('[data-test-submit-button]');
   });
