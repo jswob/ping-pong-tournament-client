@@ -8,7 +8,8 @@
         <input 
             data-test-sets-input
             type="number" 
-            min="1" 
+            min="1"
+            max="9999" 
             value={{@changeset.sets}} 
             {{on "change" (fn @update @changeset "sets" )}} 
         />
@@ -24,6 +25,7 @@
             data-test-points-input
             type="number" 
             min="1" 
+            max="9999"
             value={{@changeset.pointsToWin}} 
             {{on "change" (fn @update @changeset "pointsToWin" )}} />
     </SetupGameForm::Option>
