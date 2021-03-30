@@ -7,7 +7,7 @@
         <PowerSelect 
             @options={{@players}} 
             @selected={{@changeset.player1}} 
-            @onChange={{fn @update @changeset "player1" }} 
+            @onChange={{perform this.updatePlayer @changeset "player1" @update}} 
             as |player|
         >
             {{player.nickname}}
@@ -20,7 +20,7 @@
         <PowerSelect 
             @options={{@players}} 
             @selected={{@changeset.player2}} 
-            @onChange={{fn @update @changeset "player2" }} 
+            @onChange={{perform this.updatePlayer @changeset "player2" @update}} 
             as |player|
         >
             {{player.nickname}}
