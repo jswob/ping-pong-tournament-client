@@ -1,0 +1,28 @@
+.setup-game-form-option > .header {
+  @apply text-base font-bold mt-2;
+}
+
+.setup-game-form > .submit-button {
+  @apply bg-blue-400 font-bold text-xl p-4 rounded-lg mt-4 border-2;
+}
+
+.setup-game-form > .main-header {
+  @apply text-xl font-bold;
+}
+
+.setup-game-form > .submit-button:hover {
+  @apply bg-blue-500;
+}
+
+.setup-game-form > .submit-button:active {
+  @apply bg-blue-500 text-white border-0;
+}
+
+.setup-game-form > .submit-button.disabled {
+  @apply bg-gray-500 cursor-default;
+}
+
+.setup-game-form > .submit-button:hover.disabled,
+.setup-game-form > .submit-button:active.disabled {
+  @apply text-black bg-gray-500 border-2;
+}

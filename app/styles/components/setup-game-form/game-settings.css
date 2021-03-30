@@ -1,0 +1,13 @@
+.game-settings {
+  @apply mt-4 mb-4;
+}
+
+.game-settings input {
+  border: 1px solid;
+
+  @apply w-16 mt-2 p-1 rounded-default border-gray-400;
+}
+
+.game-settings input:focus {
+  border: 2px solid black;
+}

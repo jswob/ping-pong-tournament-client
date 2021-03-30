@@ -1,0 +1,11 @@
+.players-settings {
+  @apply flex flex-row items-stretch mt-4;
+}
+
+.players-settings > .vs-span {
+  @apply flex-none w-2/12 font-bold;
+}
+
+.players-settings > .setup-game-form-option {
+  @apply w-5/12;
+}
