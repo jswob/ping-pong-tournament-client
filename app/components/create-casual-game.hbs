@@ -1,0 +1,16 @@
+{{#with (changeset this.settings this.GameValidations) as |changeset|}}
+    <SetupGameForm 
+        @headline="Settings" 
+        @buttonText="New Game" 
+        @changeset={{changeset}} 
+        @onSubmit={{perform this.createCasualGame}}
+    >
+        <SetupGameForm::PlayersSettings 
+            @players={{@players}} 
+            @changeset={{changeset}} 
+            @update={{this.update}} 
+        />
+
+        <SetupGameForm::GameSettings @changeset={{changeset}} @update={{this.update}} />
+    </SetupGameForm>
+{{/with}}
