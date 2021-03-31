@@ -77,12 +77,12 @@ module('Integration | Component | setup-game-form', function (hooks) {
   });
 
   test('It correctly handles submit event', async function (assert) {
-    assert.expect(2);
+    assert.expect(3);
 
     const testData = {
       changeset: {
         isValid: false,
-        validate: () => {}
+        validate: () => {},
       },
       callback: (changeset) => {
         assert.ok(
@@ -101,7 +101,7 @@ module('Integration | Component | setup-game-form', function (hooks) {
         @buttonText="some" 
       />`);
 
-    await click('[data-test-submit-button]');
+    assert.dom('[data-test-submit-button]').isDisabled();
 
     this.set('changeset', {
       isValid: true,

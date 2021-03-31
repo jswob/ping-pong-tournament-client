@@ -10,7 +10,12 @@
 
     <span data-test-h-rull class="h-rull"></span>
 
-    <button data-test-submit-button class="submit-button {{if @changeset.isValid "" "disabled" }}" type="submit">
+    <button 
+        data-test-submit-button 
+        class="submit-button {{if @changeset.isValid "" "disabled" }}" 
+        disabled={{if @changeset.isValid this.enabled this.disabled}} 
+        type="submit"
+    >
         {{@buttonText}}
     </button>
 </form>
