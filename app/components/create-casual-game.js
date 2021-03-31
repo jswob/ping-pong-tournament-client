@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { dropTask } from 'ember-concurrency';
-import GameValidations from '../validations/game';
+import GameValidations from 'ping-pong-tournament-client/validations/game';
 
 export default class CreateCasualGameComponent extends Component {
   GameValidations = GameValidations;

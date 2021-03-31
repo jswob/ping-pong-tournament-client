@@ -2,8 +2,8 @@ import {
   validateNumber,
   validatePresence,
 } from 'ember-changeset-validations/validators';
-import validateModelType from '../validators/model-type';
-import validateUniqueness from '../validators/uniqueness';
+import validateModelType from 'ping-pong-tournament-client/validators/model-type';
+import validateUniqueness from 'ping-pong-tournament-client/validators/uniqueness';
 
 export default {
   player1: [
