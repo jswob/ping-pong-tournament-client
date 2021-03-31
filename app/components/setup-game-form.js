@@ -10,7 +10,9 @@ export default class SetupGameFormComponent extends Component {
 
     changeset.validate();
 
-    if (!changeset.isValid) return;
+    if (!changeset.isValid) {
+      return;
+    }
 
     return onSubmit(changeset);
   }

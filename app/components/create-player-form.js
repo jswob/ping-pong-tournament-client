@@ -31,14 +31,16 @@ export default class CreatePlayerFormComponent extends Component {
 
     const { changeset } = this;
 
-    if (!changeset.isValid) return;
-    
-    changeset.execute()
-    
+    if (!changeset.isValid) {
+      return;
+    }
+
+    changeset.execute();
+
     this.args.switchMode();
-    
+
     yield this.store.createRecord('player', this.player).save();
-    
+
     this.refreshPlayerModel();
   }
 

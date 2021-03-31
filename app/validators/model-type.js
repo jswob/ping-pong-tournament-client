@@ -5,9 +5,11 @@ export default function validateModelType({ type }) {
       newValue.constructor &&
       newValue.constructor.toString() &&
       newValue.constructor.toString().split(':')[1] === type
-    )
+    ) {
       return true;
-    return `${capitalize(key)} must have correct type`;
+    } else {
+      return `${capitalize(key)} must have correct type`;
+    }
   };
 }
 

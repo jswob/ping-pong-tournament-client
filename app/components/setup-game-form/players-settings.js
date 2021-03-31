@@ -10,6 +10,8 @@ export default class SetupGameFormPlayersSettingsComponent extends Component {
       (change) => change.key === fieldToValidate
     );
 
-    if (isOtherFieldChanged) changeset.validate(fieldToValidate);
+    if (isOtherFieldChanged) {
+      changeset.validate(fieldToValidate);
+    }
   }
 }

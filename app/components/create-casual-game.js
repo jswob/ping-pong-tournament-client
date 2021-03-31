@@ -27,8 +27,11 @@ export default class CreateCasualGameComponent extends Component {
 
   @action
   update(changeset, key, param) {
-    if (param.target) changeset.set(key, param.target.value);
-    else changeset.set(key, param);
+    if (param.target) {
+      changeset.set(key, param.target.value);
+    } else {
+      changeset.set(key, param);
+    }
   }
 
   refreshSettings() {
