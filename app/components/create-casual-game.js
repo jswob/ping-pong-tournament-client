@@ -36,7 +36,7 @@ export default class CreateCasualGameComponent extends Component {
       player1: null,
       player2: null,
       sets: 2,
-      pointsToWin: 15,
+      pointsToWin: 11,
     };
   }
 }
