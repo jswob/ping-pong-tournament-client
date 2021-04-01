@@ -7,21 +7,19 @@ export default class ValidationErrorsComponent extends Component {
   get errors() {
     const { errors, key } = this.args;
 
-    let errorsForKey;
+    let errorsForKey = [];
 
     errors.forEach((error) => {
-      if (error.key === key) {
+      if (error.key != key) {
+        return;
+      }
+
+      if (Array.isArray(error.validation)) {
         errorsForKey = error.validation;
+      } else {
+        errorsForKey.push(error.validation);
       }
     });
-
-    if (!errorsForKey) {
-      return [];
-    }
-
-    if (!Array.isArray(errorsForKey)) {
-      errorsForKey = [errorsForKey];
-    }
 
     return A(errorsForKey);
   }
