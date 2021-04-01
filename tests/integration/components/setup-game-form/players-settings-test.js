@@ -108,34 +108,41 @@ module(
     });
 
     test('it shows errors correctly', async function (assert) {
-      assert.expect(4);
+      assert.expect(8);
 
-      assert
-        .dom('[data-test-player1-option] [data-test-validation-error]')
-        .doesNotExist();
-
-      assert
-        .dom('[data-test-player2-option] [data-test-validation-error]')
-        .doesNotExist();
+      assert.dom('[data-test-validation-error]').doesNotExist();
 
       this.set('changeset', {
-        player1: { id: 1, nickname: 'hello' },
-        player2: { id: 2, nickname: 'hello' },
         errors: [
-          { key: 'player1', validation: 'rewrqewqrew' },
-          { key: 'player2', validation: 'rewrqewqrew' },
+          { key: 'player1', validation: 'hi there' },
+          { key: 'player2', validation: ['hello', 'world'] },
         ],
-        validate: () => {},
-        changes: [],
       });
 
       assert
         .dom('[data-test-player1-option] [data-test-validation-error]')
-        .exists();
+        .exists()
+        .hasText(this.changeset.errors[0].validation);
 
       assert
-        .dom('[data-test-player2-option] [data-test-validation-error]')
-        .exists();
+        .dom(
+          '[data-test-player2-option] [data-test-validation-error]:nth-child(1)'
+        )
+        .exists()
+        .hasText(this.changeset.errors[1].validation[0]);
+
+      assert
+        .dom(
+          '[data-test-player2-option] [data-test-validation-error]:nth-child(2)'
+        )
+        .exists()
+        .hasText(this.changeset.errors[1].validation[1]);
+
+      this.set('changeset', {
+        errors: [],
+      });
+
+      assert.dom('[data-test-validation-error]').doesNotExist();
     });
 
     test('It ables user to filter players in player1 select', async function (assert) {
