@@ -121,7 +121,7 @@ module('Integration | Component | create-casual-game', function (hooks) {
   });
 
   test('if there are no errors, invokes callback with game data as argument', async function (assert) {
-    assert.expect(6);
+    assert.expect(7);
 
     const testData = {
       sets: 5,
@@ -168,7 +168,7 @@ module('Integration | Component | create-casual-game', function (hooks) {
 
     assert.dom('[data-test-validation-error]').exists();
 
-    await click('[data-test-submit-button]');
+    assert.dom('[data-test-submit-button]').isDisabled();
 
     await fillIn('[data-test-sets-input]', testData.sets);
     await fillIn('[data-test-points-input]', testData.pointsToWin);
