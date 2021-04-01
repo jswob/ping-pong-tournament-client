@@ -22,13 +22,24 @@ module('Integration | Component | create-casual-game', function (hooks) {
   });
 
   test('it renders itself correctly', async function (assert) {
-    assert.expect(5);
+    assert.expect(8);
+
+    const className = 'some-class';
+
+    this.set('class', className);
 
     await render(hbs`
       <CreateCasualGame 
+        class={{this.class}}
         @players={{this.players}} 
         @callback={{this.callback}} 
       />`);
+
+    assert
+      .dom('[data-test-create-casual-game]')
+      .exists()
+      .hasClass('create-casual-game')
+      .hasClass(className, 'It has passed class');
 
     assert.dom('[data-test-setup-game-form]').exists();
 
@@ -125,26 +136,22 @@ module('Integration | Component | create-casual-game', function (hooks) {
 
     const testData = {
       sets: 5,
-      pointsToWin: 20
-    }
+      pointsToWin: 20,
+    };
 
     this.set('callback', (settings) => {
-      assert.ok(true, "Callback has been invoked");
+      assert.ok(true, 'Callback has been invoked');
       assert.equal(
         settings.player1.nickname,
         this.players.objectAt(0).nickname,
-        "player1 is correctly set"
+        'player1 is correctly set'
       );
       assert.equal(
         settings.player2.nickname,
         this.players.objectAt(1).nickname,
         'player2 is correctly set'
       );
-      assert.equal(
-        settings.sets,
-        testData.sets,
-        'sets is correctly set'
-      );
+      assert.equal(settings.sets, testData.sets, 'sets is correctly set');
       assert.equal(
         settings.pointsToWin,
         testData.pointsToWin,
@@ -172,7 +179,7 @@ module('Integration | Component | create-casual-game', function (hooks) {
 
     await fillIn('[data-test-sets-input]', testData.sets);
     await fillIn('[data-test-points-input]', testData.pointsToWin);
-    
+
     await click('[data-test-submit-button]');
   });
 });
