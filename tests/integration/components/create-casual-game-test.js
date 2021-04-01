@@ -131,8 +131,24 @@ module('Integration | Component | create-casual-game', function (hooks) {
     assert.dom('[data-test-validation-error]').doesNotExist();
   });
 
+  test('if there are errors, submit button is disabled', async function (assert) {
+    assert.expect(2);
+
+    await render(hbs`
+      <CreateCasualGame 
+        @players={{this.players}} 
+        @callback={{this.callback}} 
+      />`);
+
+      await fillIn('[data-test-sets-input]', -1);
+
+      assert.dom('[data-test-validation-error]').exists();
+
+      assert.dom('[data-test-submit-button]').isDisabled();
+  });
+
   test('if there are no errors, invokes callback with game data as argument', async function (assert) {
-    assert.expect(7);
+    assert.expect(5);
 
     const testData = {
       sets: 5,
@@ -170,12 +186,6 @@ module('Integration | Component | create-casual-game', function (hooks) {
 
     await click('[data-test-player2-option] .ember-basic-dropdown-trigger');
     await click('ul > li:last-child');
-
-    await fillIn('[data-test-sets-input]', -1);
-
-    assert.dom('[data-test-validation-error]').exists();
-
-    assert.dom('[data-test-submit-button]').isDisabled();
 
     await fillIn('[data-test-sets-input]', testData.sets);
     await fillIn('[data-test-points-input]', testData.pointsToWin);
