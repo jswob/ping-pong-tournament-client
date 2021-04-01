@@ -51,30 +51,38 @@ module(
       assert.dom('[data-test-points-option] [data-test-points-input]').exists();
     });
 
-    test('it correctly handles validation errors', async function (assert) {
-      assert.expect(6);
+    test('it renders passed validation errors', async function (assert) {
+      assert.expect(9);
 
       assert.dom('[data-test-validation-error]').doesNotExist();
 
-      this.set('changeset', { errors: [{ key: 'sets', validation: 'dsafas' }] });
-
-      assert
-        .dom('[data-test-sets-option] [data-test-validation-error]')
-        .exists({ count: 1 });
-      assert
-        .dom('[data-test-points-option] [data-test-validation-error]')
-        .doesNotExist();
-
       this.set('changeset', {
-        errors: [{ key: 'pointsToWin', validation: 'fasd' }],
+        errors: [
+          { key: 'sets', validation: 'dsafas' },
+          { key: 'pointsToWin', validation: ['hello', 'world'] },
+        ],
       });
 
+      assert.dom('[data-test-validation-error]').exists({ count: 3 });
+
       assert
         .dom('[data-test-sets-option] [data-test-validation-error]')
-        .doesNotExist();
+        .exists()
+        .hasText(this.changeset.errors[0].validation);
+
       assert
-        .dom('[data-test-points-option] [data-test-validation-error]')
-        .exists({ count: 1 });
+        .dom(
+          '[data-test-points-option] [data-test-validation-error]:nth-child(1)'
+        )
+        .exists()
+        .hasText(this.changeset.errors[1].validation[0]);
+
+      assert
+        .dom(
+          '[data-test-points-option] [data-test-validation-error]:nth-child(2)'
+        )
+        .exists()
+        .hasText(this.changeset.errors[1].validation[1]);
 
       this.set('changeset', {
         errors: [],
