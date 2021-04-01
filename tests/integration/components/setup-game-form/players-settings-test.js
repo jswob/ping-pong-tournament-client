@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click } from '@ember/test-helpers';
+import { render, click, fillIn } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 
@@ -138,6 +138,38 @@ module(
         .exists();
     });
 
+    test('It ables user to filter players in player1 select', async function (assert) {
+      assert.expect(2);
+
+      await click('[data-test-player1-option] .ember-power-select-trigger');
+
+      await fillIn(
+        '.ember-basic-dropdown-content input',
+        this.players.firstObject.nickname
+      );
+
+      assert
+        .dom('.ember-basic-dropdown-content li')
+        .exists({ count: 1 })
+        .hasText(this.players.firstObject.nickname);
+    });
+
+    test('It ables user to filter players in player2 select', async function (assert) {
+      assert.expect(2);
+
+      await click('[data-test-player2-option] .ember-power-select-trigger');
+
+      await fillIn(
+        '.ember-basic-dropdown-content input',
+        this.players.firstObject.nickname
+      );
+
+      assert
+        .dom('.ember-basic-dropdown-content li')
+        .exists({ count: 1 })
+        .hasText(this.players.firstObject.nickname);
+    });
+
     test('it inovkes validate function on changeset correctly', async function (assert) {
       assert.expect(7);
 
@@ -163,7 +195,7 @@ module(
       await click('ul > li:first-child');
 
       this.changeset.changes = [{ key: 'player2' }];
-      
+
       await click('[data-test-player1-option] .ember-basic-dropdown-trigger');
 
       await click('ul > li:last-child');

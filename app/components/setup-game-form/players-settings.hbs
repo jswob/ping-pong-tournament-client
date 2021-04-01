@@ -7,6 +7,8 @@
         <PowerSelect 
             @options={{@players}} 
             @selected={{@changeset.player1}} 
+            @searchEnabled={{true}}
+            @searchField="nickname"
             @placeholder="Player 1"
             @onChange={{fn this.updatePlayer @changeset "player1" @update}} 
             as |player|
@@ -21,6 +23,8 @@
         <PowerSelect 
             @options={{@players}} 
             @selected={{@changeset.player2}} 
+            @searchEnabled={{true}}
+            @searchField="nickname"
             @placeholder="Player 2"
             @onChange={{fn this.updatePlayer @changeset "player2" @update}} 
             as |player|
