@@ -117,14 +117,8 @@ module('Integration | Component | create-casual-game', function (hooks) {
 
     await click('[data-test-submit-button]');
   });
-});
 
-module(
-  'Integration | Component | create-casual-game validation',
-  function (hooks) {
-    setupRenderingTest(hooks);
-    setupMirage(hooks);
-
+  module('validation', function (hooks) {
     hooks.beforeEach(async function () {
       this.server.createList('player', 2);
 
@@ -263,5 +257,5 @@ module(
 
       assert.dom('[data-test-validation-error]').doesNotExist();
     });
-  }
-);
+  });
+});
