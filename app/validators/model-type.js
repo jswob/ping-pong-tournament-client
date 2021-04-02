@@ -1,3 +1,5 @@
+import { capitalize } from '@ember/string';
+
 export default function validateModelType({ type }) {
   return (key, newValue) => {
     if (
@@ -11,8 +13,4 @@ export default function validateModelType({ type }) {
       return `${capitalize(key)} must have correct type`;
     }
   };
-}
-
-function capitalize(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
 }
