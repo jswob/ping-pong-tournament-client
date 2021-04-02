@@ -1,6 +1,5 @@
 import Component from '@glimmer/component';
 import { computed } from '@ember/object';
-import { A } from '@ember/array';
 
 export default class ValidationErrorsComponent extends Component {
   @computed('args.errors.[]', 'args.key')
@@ -21,6 +20,6 @@ export default class ValidationErrorsComponent extends Component {
       }
     });
 
-    return A(errorsForKey);
+    return errorsForKey;
   }
 }
