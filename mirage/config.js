@@ -12,10 +12,10 @@ export default function () {
   this.post('players', (schema, { requestBody }) => {
     const { player } = JSON.parse(requestBody);
 
-    const createdPlayer = schema.create('player', player);
+    const { attrs } = schema.create('player', player);
 
     return {
-      player: { ...createdPlayer },
+      player: { ...attrs },
     };
   });
 }

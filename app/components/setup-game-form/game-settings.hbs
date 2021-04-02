@@ -1,0 +1,32 @@
+<div ...attributes data-test-game-settings class="game-settings">
+    <SetupGameForm::Option 
+        data-test-sets-option
+        @title="Number of sets" 
+        @errors={{@changeset.errors}} 
+        @key="sets"
+    >
+        <input 
+            data-test-sets-input
+            type="number" 
+            min="1"
+            max="9999" 
+            value={{@changeset.sets}} 
+            {{on "change" (fn @update @changeset "sets" )}} 
+        />
+    </SetupGameForm::Option>
+
+    <SetupGameForm::Option 
+        data-test-points-option
+        @title="Number of points to win a set" 
+        @errors={{@changeset.errors}} 
+        @key="pointsToWin"
+    >
+        <input 
+            data-test-points-input
+            type="number" 
+            min="1" 
+            max="9999"
+            value={{@changeset.pointsToWin}} 
+            {{on "change" (fn @update @changeset "pointsToWin" )}} />
+    </SetupGameForm::Option>
+</div>

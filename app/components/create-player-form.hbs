@@ -28,8 +28,6 @@
     </div>
     
     {{#if @createMode}}
-        {{#each this.changeset.errors as |error|}}
-            <ValidationError @error={{error.validation}} />
-        {{/each}}
+        <ValidationErrors @errors={{this.changeset.errors}} @key="nickname" />
     {{/if}}
 </form>

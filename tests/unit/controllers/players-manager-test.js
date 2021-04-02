@@ -4,7 +4,6 @@ import { setupTest } from 'ember-qunit';
 module('Unit | Controller | players-manager', function (hooks) {
   setupTest(hooks);
 
-  // TODO: Replace this with your real tests.
   test('switchMode correctly switches queryParam', function (assert) {
     assert.expect(2);
     let controller = this.owner.lookup('controller:players-manager');

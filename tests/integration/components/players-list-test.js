@@ -2,7 +2,6 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
-import { A } from '@ember/array';
 
 module('Integration | Component | players-list', function (hooks) {
   setupRenderingTest(hooks);
@@ -37,7 +36,7 @@ module('Integration | Component | players-list', function (hooks) {
     assert.expect(2);
 
     const testData = {
-      players: A([
+      players: [
         {
           id: 1,
           nickname: 'player1',
@@ -50,7 +49,7 @@ module('Integration | Component | players-list', function (hooks) {
           id: 3,
           nickname: 'player3',
         },
-      ]),
+      ],
     };
 
     this.setProperties(testData);

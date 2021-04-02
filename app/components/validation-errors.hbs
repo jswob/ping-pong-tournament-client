@@ -1,0 +1,7 @@
+{{#if this.errors.length}}
+    <div data-test-validation-errors class="validation-errors">
+        {{#each this.errors as |error|}}
+            <span ...attributes data-test-validation-error class="validation-error">{{error}}</span>
+        {{/each}}
+    </div>
+{{/if}}

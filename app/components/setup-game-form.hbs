@@ -1,0 +1,21 @@
+<form 
+    ...attributes 
+    data-test-setup-game-form 
+    class="setup-game-form" 
+    {{on "submit" (fn this.validateChangeset @changeset)}}
+>
+    <h3 data-test-main-header class="main-header">{{@headline}}</h3>
+
+    {{yield}}
+
+    <span data-test-h-rull class="h-rull"></span>
+
+    <button 
+        data-test-submit-button 
+        class="submit-button {{if @changeset.isValid "" "disabled" }}" 
+        disabled={{if @changeset.isValid this.enabled this.disabled}} 
+        type="submit"
+    >
+        {{@buttonText}}
+    </button>
+</form>
