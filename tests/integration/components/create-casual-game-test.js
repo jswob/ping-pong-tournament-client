@@ -202,7 +202,7 @@ module('Integration | Component | create-casual-game', function (hooks) {
         .hasText("Player2 can't be the same as Player1");
     });
 
-    test('sets must be inteager greater than 0', async function (assert) {
+    test('sets must be integer greater than 0', async function (assert) {
       assert.expect(8);
 
       assert.dom('[data-test-validation-error]').doesNotExist();
@@ -230,7 +230,7 @@ module('Integration | Component | create-casual-game', function (hooks) {
       assert.dom('[data-test-validation-error]').doesNotExist();
     });
 
-    test('pointsToWin number must be inteager greater than 0', async function (assert) {
+    test('pointsToWin number must be integer greater than 0', async function (assert) {
       assert.expect(8);
 
       assert.dom('[data-test-validation-error]').doesNotExist();
