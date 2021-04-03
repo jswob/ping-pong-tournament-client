@@ -21,7 +21,7 @@ module('Acceptance | casual/new', function (hooks) {
     const testData = {
       player1: 'player1',
       player2: 'player2',
-      sets: 4,
+      amountOfSets: 4,
       pointsToWin: 27,
     };
 
@@ -49,7 +49,7 @@ module('Acceptance | casual/new', function (hooks) {
     await fillIn('.ember-basic-dropdown-content input', testData.player2);
     await click('ul > li');
 
-    await fillIn('[data-test-sets-input]', testData.sets);
+    await fillIn('[data-test-sets-input]', testData.amountOfSets);
 
     await fillIn('[data-test-points-input]', testData.pointsToWin);
 
@@ -75,7 +75,7 @@ module('Acceptance | casual/new', function (hooks) {
       testData.player2,
       'player2 is correct'
     );
-    assert.equal(game.sets, testData.sets, 'sets is correct');
+    assert.equal(game.amountOfSets, testData.amountOfSets, 'amountOfSets is correct');
     assert.equal(
       game.pointsToWin,
       testData.pointsToWin,

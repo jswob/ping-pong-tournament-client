@@ -16,6 +16,6 @@ export default {
     validateModelType({ type: 'player' }),
     validateUniqueness({ on: 'player1' }),
   ],
-  sets: validateNumber({ integer: true, gt: 0 }),
+  amountOfSets: validateNumber({ integer: true, gt: 0 }),
   pointsToWin: validateNumber({ integer: true, gt: 0 }),
 };
