@@ -66,12 +66,12 @@ module('Acceptance | casual/new', function (hooks) {
     const game = games.firstObject;
 
     assert.equal(
-      game.player1.content.nickname,
+      game.players.objectAt(0).get('nickname'),
       testData.player1,
       'player1 is correct'
     );
     assert.equal(
-      game.player2.content.nickname,
+      game.players.objectAt(1).get('nickname'),
       testData.player2,
       'player2 is correct'
     );

@@ -11,7 +11,11 @@ export default class CasualNewController extends Controller {
 
     const id = `${player1.nickname}vs${player2.nickname}-${Date.now()}`;
 
-    this.store.createRecord('game', { ...settings, id: id });
+    this.store.createRecord('game', {
+      ...settings,
+      id: id,
+      players: [player1, player2],
+    });
 
     // TO DO
     // this.transitionToRoute('some');
