@@ -18,7 +18,7 @@ export default class SingleSetScoreComponent extends Component {
   increment(set, scoreParam, callback) {
     set.set(scoreParam, set.get(scoreParam) + 1);
 
-    callback(set);
+    callback();
   }
 
   @action
@@ -26,7 +26,7 @@ export default class SingleSetScoreComponent extends Component {
     if (set.get(scoreParam) > 0) {
       set.set(scoreParam, set.get(scoreParam) - 1);
 
-      callback(set);
+      callback();
     }
   }
 }

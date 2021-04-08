@@ -132,7 +132,6 @@ module('Integration | Component | single-set/score', function (hooks) {
 
     this.set('callback', (set) => {
       assert.ok(true, 'Callback has been invoked');
-      assert.equal(set.get(this.scoreParam), 1, 'Value has been icremented');
     });
 
     await render(
@@ -152,14 +151,19 @@ module('Integration | Component | single-set/score', function (hooks) {
     );
 
     await click('[data-test-plus-icon]');
+
+    assert.equal(
+      this.setRecord.get(this.scoreParam),
+      1,
+      'scoreParam has been updated to 1'
+    );
   });
 
   test('It is possible to decrement selected scoreParam', async function (assert) {
     assert.expect(3);
 
-    this.set('callback', (set) => {
+    this.set('callback', () => {
       assert.ok(true, 'Callback has been invoked');
-      assert.equal(set.get(this.scoreParam), 0, 'Value has been decremented');
     });
 
     await render(
@@ -181,12 +185,18 @@ module('Integration | Component | single-set/score', function (hooks) {
     );
 
     await click('[data-test-minus-icon]');
+
+    assert.equal(
+      this.setRecord.get(this.scoreParam),
+      0,
+      'scoreParam has been updated to 0'
+    );
   });
 
   test('scoreParam cannot be decremented if it equals 0', async function (assert) {
     assert.expect(2);
 
-    this.set('callback', (_set) => {
+    this.set('callback', () => {
       assert.ok(false, 'Callback cannot be invoked');
     });
 
