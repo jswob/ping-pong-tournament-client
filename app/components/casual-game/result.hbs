@@ -1,0 +1,13 @@
+<div data-test-result class="result">
+    <h3 data-test-result-headline class="headline">
+        {{serialize-game-result @game.result}}
+    </h3>
+    <button 
+        data-test-finish-button 
+        class="finish-button" 
+        type="button" 
+        {{on "click" (perform @callback @game)}}
+    >
+        Finish
+    </button>
+</div>
