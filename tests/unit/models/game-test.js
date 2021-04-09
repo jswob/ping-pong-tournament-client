@@ -19,8 +19,8 @@ module('Unit | Model | game', function (hooks) {
     this.setProperties({ player1, player2, game, store });
   });
 
-  test('countScore works correctly', function (assert) {
-    assert.expect(3);
+  test('countResult works correctly', function (assert) {
+    assert.expect(6);
 
     const { game, store } = this;
 
@@ -28,15 +28,18 @@ module('Unit | Model | game', function (hooks) {
     store.createRecord('set', { game, winnerIndex: 1 });
     store.createRecord('set', { game, winnerIndex: 0 });
 
-    assert.equal(this.game.countScore(), '2/1');
+    assert.equal(this.game.countResult(), '2/1');
+    assert.equal(this.game.result, '2/1', 'It updates result property');
 
     store.createRecord('set', { game, winnerIndex: 1 });
 
-    assert.equal(this.game.countScore(), '2/2');
+    assert.equal(this.game.countResult(), '2/2');
+    assert.equal(this.game.result, '2/2', 'It updates result property');
 
     store.createRecord('set', { game, winnerIndex: 0 });
 
-    assert.equal(this.game.countScore(), '3/2');
+    assert.equal(this.game.countResult(), '3/2');
+    assert.equal(this.game.result, '3/2', 'It updates result property');
   });
 
   test('settleWinner returns undefined if there is no winner', function (assert) {
@@ -51,7 +54,7 @@ module('Unit | Model | game', function (hooks) {
   });
 
   test('settleWinner correctly handles case when player1 is the winner', function (assert) {
-    assert.expect(1);
+    assert.expect(2);
 
     const { game, store, player1 } = this;
 
@@ -60,10 +63,15 @@ module('Unit | Model | game', function (hooks) {
     store.createRecord('set', { game, winnerIndex: 0 });
 
     assert.equal(game.settleWinner().get('id'), player1.get('id'));
+    assert.equal(
+      game.get('winner').get('id'),
+      player1.get('id'),
+      'It updates winner property'
+    );
   });
 
   test('settleWinner correctly handles case when player2 is the winner', function (assert) {
-    assert.expect(1);
+    assert.expect(2);
 
     const { game, store, player2 } = this;
 
@@ -71,5 +79,10 @@ module('Unit | Model | game', function (hooks) {
     store.createRecord('set', { game, winnerIndex: 1 });
 
     assert.equal(game.settleWinner().get('id'), player2.get('id'));
+    assert.equal(
+      game.get("winner").get('id'),
+      player2.get('id'),
+      'It updates winner property'
+    );
   });
 });
