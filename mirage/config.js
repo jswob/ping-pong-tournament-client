@@ -4,15 +4,11 @@ export default function () {
   this.urlPrefix = `${ENV.api.host}/${ENV.api.namespace}`;
 
   this.get('/players', (schema, _request) => {
-    try {
-      const players = schema.players.all().models;
+    const players = schema.players.all().models;
 
-      return {
-        players: players,
-      };
-    } catch (error) {
-      console.log(error);
-    }
+    return {
+      players: players,
+    };
   });
 
   this.get('/players:id', (schema, { params }) => {
@@ -67,39 +63,60 @@ export default function () {
   });
 
   this.put('/games/:id', (schema, request) => {
-    try {
-      let requestBody = JSON.parse(request.requestBody).game;
+    let requestBody = JSON.parse(request.requestBody).game;
 
-      const game = schema.games.find(request.params.id);
+    const game = schema.games.find(request.params.id);
 
-      let winner;
-      const players = requestBody.players.map((id) => schema.players.find(id));
+    let winner;
+    const players = requestBody.players.map((id) => schema.players.find(id));
 
-      if (requestBody.winner) {
-        winner = schema.players.find(requestBody.winner);
-      }
-
-      requestBody.players = players;
-      requestBody.winner= winner;
-
-      const updatedGame = game.update(requestBody);
-
-      const playersLink = `/api/games/${updatedGame.id}/players`;
-
-      return {
-        game: {
-          id: updatedGame.id,
-          amountOfSets: updatedGame.amountOfSets,
-          pointsToWin: updatedGame.pointsToWin,
-          sets: null,
-          winner: updatedGame.winnerId,
-          links: {
-            players: playersLink,
-          },
-        },
-      };
-    } catch (error) {
-      console.log(error);
+    if (requestBody.winner) {
+      winner = schema.players.find(requestBody.winner);
     }
+
+    requestBody.players = players;
+    requestBody.winner = winner;
+
+    const updatedGame = game.update(requestBody);
+
+    const playersLink = `/api/games/${updatedGame.id}/players`;
+
+    return {
+      game: {
+        id: updatedGame.id,
+        amountOfSets: updatedGame.amountOfSets,
+        pointsToWin: updatedGame.pointsToWin,
+        sets: null,
+        winner: updatedGame.winnerId,
+        links: {
+          players: playersLink,
+        },
+      },
+    };
+  });
+
+  this.post('games', (schema, { requestBody }) => {
+    requestBody = JSON.parse(requestBody).game;
+
+    const players = requestBody.players.map((playerId) =>
+      schema.players.find(playerId)
+    );
+
+    requestBody.players = players;
+
+    const game = schema.create('game', requestBody);
+
+    return {
+      game: {
+        id: game.id,
+        amountOfSets: game.amountOfSets,
+        pointsToWin: game.pointsToWin,
+        sets: null,
+        winner: game.winnerId,
+        links: {
+          players: `/api/games/${game.id}/players`,
+        },
+      },
+    };
   });
 }

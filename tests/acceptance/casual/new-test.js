@@ -16,7 +16,9 @@ module('Acceptance | casual/new', function (hooks) {
   });
 
   test('User can create a new casual game', async function (assert) {
-    assert.expect(6);
+    assert.expect(7);
+
+    const schema = this.server.schema.games;
 
     const testData = {
       player1: 'player1',
@@ -27,16 +29,12 @@ module('Acceptance | casual/new', function (hooks) {
 
     this.server.createList('player', 2);
 
-    let games;
-
     const store = this.owner.lookup('service:store');
 
     await visit('/casual/new');
 
-    games = await store.peekAll('game');
-
     assert.equal(
-      games.length,
+      schema.all().length,
       0,
       'In the beginnig there is no game record in store'
     );
@@ -55,31 +53,28 @@ module('Acceptance | casual/new', function (hooks) {
 
     await click('[data-test-submit-button]');
 
-    games = await store.peekAll('game');
-
     assert.equal(
-      games.length,
+      schema.all().length,
       1,
       'After submiting form game record has been created'
     );
 
-    const game = games.firstObject;
+    const game = schema.all().models[0];
+
+    assert.equal(game.playerIds[0], '1', 'player1 is correct');
+    assert.equal(game.playerIds[1], '2', 'player2 is correct');
 
     assert.equal(
-      game.players.objectAt(0).get('nickname'),
-      testData.player1,
-      'player1 is correct'
+      game.amountOfSets,
+      testData.amountOfSets,
+      'amountOfSets is correct'
     );
-    assert.equal(
-      game.players.objectAt(1).get('nickname'),
-      testData.player2,
-      'player2 is correct'
-    );
-    assert.equal(game.amountOfSets, testData.amountOfSets, 'amountOfSets is correct');
     assert.equal(
       game.pointsToWin,
       testData.pointsToWin,
       'pointsToWin is correct'
     );
+
+    assert.equal(currentURL(), `/casual/play/${game.id}`);
   });
 });
