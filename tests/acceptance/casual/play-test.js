@@ -42,7 +42,7 @@ module('Acceptance | casual/play', function (hooks) {
   });
 
   test('User can play a game and save it', async function (assert) {
-    assert.expect(4);
+    assert.expect(3);
 
     await visit(`/casual/play/${this.gameId}`);
 
