@@ -46,7 +46,10 @@ export default function () {
 
   this.get('/games/:id/players', (schema, { params }) => {
     const players = schema.players.all().models.filter(({ attrs }) => {
-      if (attrs.gamesPlayedIds.find((id) => id === params.id)) {
+      if (
+        attrs.gamesPlayedIds &&
+        attrs.gamesPlayedIds.find((id) => id === params.id)
+      ) {
         return true;
       }
       return false;
