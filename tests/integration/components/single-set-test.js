@@ -16,12 +16,13 @@ module('Integration | Component | single-set', function (hooks) {
       player1: player1,
       player2: player2,
       amountOfSets: 2,
-      pointsToWin: 11,
+      pointsToWin: 2,
     });
 
     const setRecord = store.createRecord('set', { game: game });
 
     this.setProperties({
+      pointsToWin: game.get('pointsToWin'),
       setRecord,
       setNumber: '1',
     });
@@ -127,7 +128,7 @@ module('Integration | Component | single-set', function (hooks) {
         "Initialy winner hasn't been settled"
       );
 
-      for (let clicksOnPlayer1 = 0; clicksOnPlayer1 < 11; clicksOnPlayer1++) {
+      for (let clicksOnPlayer1 = 0; clicksOnPlayer1 < this.pointsToWin; clicksOnPlayer1++) {
         await click('[data-test-player-1-score] [data-test-plus-icon]');
       }
 
@@ -161,7 +162,7 @@ module('Integration | Component | single-set', function (hooks) {
         "Initialy winner hasn't been settled"
       );
 
-      for (let clicksOnPlayer2 = 0; clicksOnPlayer2 < 11; clicksOnPlayer2++) {
+      for (let clicksOnPlayer2 = 0; clicksOnPlayer2 < this.pointsToWin; clicksOnPlayer2++) {
         await click('[data-test-player-2-score] [data-test-plus-icon]');
       }
 
@@ -193,11 +194,11 @@ module('Integration | Component | single-set', function (hooks) {
         "Initialy winner hasn't been settled"
       );
 
-      for (let clicksOnPlayer1 = 0; clicksOnPlayer1 < 10; clicksOnPlayer1++) {
+      for (let clicksOnPlayer1 = 0; clicksOnPlayer1 < (this.pointsToWin - 1); clicksOnPlayer1++) {
         await click('[data-test-player-1-score] [data-test-plus-icon]');
       }
 
-      for (let clicksOnPlayer2 = 0; clicksOnPlayer2 < 11; clicksOnPlayer2++) {
+      for (let clicksOnPlayer2 = 0; clicksOnPlayer2 < this.pointsToWin; clicksOnPlayer2++) {
         await click('[data-test-player-2-score] [data-test-plus-icon]');
       }
 
