@@ -13,8 +13,7 @@ module('Integration | Component | single-set/score', function (hooks) {
     const player2 = store.createRecord('player', { nickname: 'some2', id: 2 });
 
     const game = store.createRecord('game', {
-      player1: player1,
-      player2: player2,
+      players: [player1, player2],
       amountOfSets: 2,
       pointsToWin: 11,
     });
