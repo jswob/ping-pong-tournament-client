@@ -1,0 +1,15 @@
+<div ...attributes data-test-game-handler class="game-handler">
+    <div data-test-sets-list class="sets-list">
+        {{#each @game.sets as |set index|}}
+            <SingleSet 
+                @set={{set}} 
+                @setNumber={{increment index}} 
+                @callback={{this.settleGame}} 
+            />
+        {{/each}}
+    </div>
+
+    {{#if @game.winner}}
+        <GameHandler::Result @game={{@game}} @callback={{@callback}} />
+    {{/if}}
+</div>
