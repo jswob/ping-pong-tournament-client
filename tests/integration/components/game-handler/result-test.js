@@ -2,9 +2,8 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
-import { task } from 'ember-concurrency';
 
-module('Integration | Component | casual-game/result', function (hooks) {
+module('Integration | Component | game-handler/result', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
@@ -32,7 +31,7 @@ module('Integration | Component | casual-game/result', function (hooks) {
     this.set('callback', () => {});
 
     await render(hbs`
-      <CasualGame::Result 
+      <GameHandler::Result 
         @game={{this.game}} 
         @callback={{this.callback}} 
       />`);
@@ -50,5 +49,21 @@ module('Integration | Component | casual-game/result', function (hooks) {
       .exists()
       .hasClass('finish-button')
       .hasText('Finish');
+  });
+
+  test('it invokes passed callback', async function (assert) {
+    assert.expect(1);
+
+    this.set('callback', () => {
+      assert.ok(true, "Callback has been invoked");
+    });
+
+    await render(hbs`
+      <GameHandler::Result 
+        @game={{this.game}} 
+        @callback={{this.callback}} 
+      />`);
+
+    await click('[data-test-finish-button]');
   });
 });
