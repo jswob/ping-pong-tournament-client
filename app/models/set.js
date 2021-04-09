@@ -20,6 +20,8 @@ export default class SetModel extends Model {
       winnerIndex = 1;
     }
 
+    this.set('winnerIndex', winnerIndex);
+
     return winnerIndex;
   }
 }

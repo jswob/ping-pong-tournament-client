@@ -33,7 +33,7 @@ module('Unit | Model | set', function (hooks) {
   });
 
   test('settleWinner correctly handles case when player1 is the winner', async function (assert) {
-    assert.expect(3);
+    assert.expect(6);
 
     const { player1Index, setRecord, game } = this;
 
@@ -46,12 +46,20 @@ module('Unit | Model | set', function (hooks) {
       'If player1 has expected amount of points to win and player2 has 2 or more points less, player1 is the winner'
     );
 
+    assert.equal(
+      setRecord.winnerIndex,
+      player1Index,
+      'It sets winnerIndex property'
+    );
+
     setRecord.player2Score = game.pointsToWin - 1;
 
     assert.notOk(
       setRecord.settleWinner(),
       'If player1 has expected amount of points to win and player2 has only one point less, there is no winner'
     );
+
+    assert.notOk(setRecord.winnerIndex, 'It sets winnerIndex property');
 
     setRecord.player1Score = game.pointsToWin + 1;
 
@@ -60,10 +68,16 @@ module('Unit | Model | set', function (hooks) {
       player1Index,
       'If player1 has expected amount of points to win and player2 has 2 or more points less, player1 is the winner'
     );
+
+    assert.equal(
+      setRecord.winnerIndex,
+      player1Index,
+      'It sets winnerIndex property'
+    );
   });
 
   test('settleWinner correctly handles case when player2 is the winner', async function (assert) {
-    assert.expect(3);
+    assert.expect(6);
 
     const { player2Index, setRecord, game } = this;
 
@@ -76,6 +90,12 @@ module('Unit | Model | set', function (hooks) {
       'If player2 has expected amount of points to win and player1 has 2 or more points less, player2 is the winner'
     );
 
+    assert.equal(
+      setRecord.winnerIndex,
+      player2Index,
+      'It sets winnerIndex property'
+    );
+
     setRecord.player1Score = game.pointsToWin - 1;
 
     assert.notOk(
@@ -83,12 +103,20 @@ module('Unit | Model | set', function (hooks) {
       'If player2 has expected amount of points to win and player1 has only one point less, there is no winner'
     );
 
+    assert.notOk(setRecord.winnerIndex, 'It sets winnerIndex property');
+
     setRecord.player2Score = game.pointsToWin + 1;
 
     assert.equal(
       setRecord.settleWinner(),
       player2Index,
       'If player2 has expected amount of points to win and player1 has 2 or more points less, player2 is the winner'
+    );
+
+    assert.equal(
+      setRecord.winnerIndex,
+      player2Index,
+      'It sets winnerIndex property'
     );
   });
 });

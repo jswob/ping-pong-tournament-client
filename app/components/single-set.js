@@ -17,8 +17,6 @@ export default class SingleSetComponent extends Component {
     const winnerIndex = set.settleWinner();
 
     if (winnerIndex != undefined) {
-      set.set('winnerIndex', winnerIndex);
-
       callback();
     }
   }
