@@ -46,31 +46,19 @@ module('Acceptance | casual/play', function (hooks) {
 
     await visit(`/casual/play/${this.gameId}`);
 
-    for (
-      let clicksOnPlus = 0;
-      clicksOnPlus < this.pointsToWin;
-      clicksOnPlus++
-    ) {
+    for (let clicksOnPlus = 0; clicksOnPlus < this.pointsToWin; clicksOnPlus++) {
       await click(
         '[data-test-single-set]:last-child > [data-test-player-1-score] [data-test-plus-icon]'
       );
     }
 
-    for (
-      let clicksOnPlus = 0;
-      clicksOnPlus < this.pointsToWin;
-      clicksOnPlus++
-    ) {
+    for (let clicksOnPlus = 0; clicksOnPlus < this.pointsToWin; clicksOnPlus++) {
       await click(
         '[data-test-single-set]:last-child > [data-test-player-2-score] [data-test-plus-icon]'
       );
     }
 
-    for (
-      let clicksOnPlus = 0;
-      clicksOnPlus < this.pointsToWin;
-      clicksOnPlus++
-    ) {
+    for (let clicksOnPlus = 0; clicksOnPlus < this.pointsToWin; clicksOnPlus++) {
       await click(
         '[data-test-single-set]:last-child > [data-test-player-1-score] [data-test-plus-icon]'
       );
