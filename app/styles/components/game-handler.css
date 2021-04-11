@@ -1,0 +1,7 @@
+.game-handler {
+    @apply flex flex-col justify-center items-center mt-4;
+}
+
+.game-handler > .sets-list {
+    @apply w-full;
+}

@@ -1,0 +1,11 @@
+.main-headline {
+    @apply mt-6 text-4xl font-bold flex flex-row flex-nowrap items-stretch text-center;
+}
+
+.main-headline > .player {
+    @apply w-5/12;
+}
+
+.main-headline > .vs-span {
+    @apply w-2/12;
+}

@@ -1,0 +1,27 @@
+.result {
+    border-top: 3px solid black;
+
+    @apply w-4/12 pt-5 mt-8;
+}
+
+.result > .headline {
+    @apply text-2xl font-bold;
+}
+
+.result > .finish-button {
+    border: 2px solid black;
+    padding: 10px 25px;
+    transition: 0.5s;
+
+    @apply border-2 rounded-lg text-xl font-bold mt-4 bg-blue-400;
+}
+
+.result > .finish-button:hover {
+    @apply bg-blue-500;
+}
+
+.result > .finish-button:active {
+    transition: 0s;
+
+    @apply text-white bg-blue-600;
+}

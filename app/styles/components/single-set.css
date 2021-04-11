@@ -1,0 +1,11 @@
+.single-set {
+    @apply flex flex-row items-stretch justify-center mt-5;
+}
+
+.single-set > .label-span {
+    @apply w-5/12 text-xl font-bold flex items-center justify-center;
+}
+
+.single-set > .single-set-score {
+    @apply w-2/12;
+}
