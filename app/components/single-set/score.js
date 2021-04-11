@@ -16,7 +16,7 @@ export default class SingleSetScoreComponent extends Component {
 
   @action
   increment() {
-    const { set, scoreParam, callback }
+    const { set, scoreParam, callback } = this.args;
 
     set.set(scoreParam, set.get(scoreParam) + 1);
 
@@ -25,7 +25,7 @@ export default class SingleSetScoreComponent extends Component {
 
   @action
   decrement() {
-    const { set, scoreParam, callback };
+    const { set, scoreParam, callback } = this.args;
 
     if (set.get(scoreParam) > 0) {
       set.set(scoreParam, set.get(scoreParam) - 1);
