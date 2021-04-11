@@ -3,13 +3,7 @@ import { action } from '@ember/object';
 
 export default class SingleSetComponent extends Component {
   get isEnabled() {
-    const { set } = this.args;
-
-    if (set.winnerIndex != undefined) {
-      return false;
-    } else {
-      return true;
-    }
+    return !Boolean(this.args.set.winnerIndex != undefined);
   }
 
   @action
