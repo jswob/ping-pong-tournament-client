@@ -90,7 +90,7 @@ module('Integration | Component | game-handler', function (hooks) {
     await click('[data-test-finish-button]');
   });
 
-  test('On render it creates a local set record', async function (assert) {
+  test('it creates a local set record on render', async function (assert) {
     assert.expect(2);
 
     const { store } = this;
