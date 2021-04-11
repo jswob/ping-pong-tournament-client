@@ -41,12 +41,12 @@ export default class GameModel extends Model {
       +results[player1Index] === +amountOfSets &&
       +results[player1Index] > +results[player2Index]
     ) {
-      winner = this.get('players').objectAt(player1Index);
+      winner = this.players.objectAt(player1Index);
     } else if (
       +results[player2Index] === +amountOfSets &&
       +results[player2Index] > +results[player1Index]
     ) {
-      winner = this.get('players').objectAt(player2Index);
+      winner = this.players.objectAt(player2Index);
     }
 
     this.set('winner', winner);
