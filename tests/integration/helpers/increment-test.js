@@ -6,7 +6,6 @@ import { hbs } from 'ember-cli-htmlbars';
 module('Integration | Helper | increment', function(hooks) {
   setupRenderingTest(hooks);
 
-  // TODO: Replace this with your real tests.
   test('it increments passed value', async function(assert) {
     this.set('inputValue', 0);
 
