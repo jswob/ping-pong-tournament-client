@@ -4,7 +4,7 @@
             data-test-minus-icon 
             class="icon minus-icon" 
             type="button" 
-            {{on 'click' (fn this.decrement @set @scoreParam @callback)}}
+            {{on 'click' this.decrement}}
         >
             {{md-icon "remove_circle"}}
         </button>
@@ -15,7 +15,7 @@
             data-test-plus-icon 
             class="icon plus-icon" 
             type="button" 
-            {{on 'click' (fn this.increment @set @scoreParam @callback)}}
+            {{on 'click' this.increment}}
         >
             {{md-icon "add_circle"}}
         </button>

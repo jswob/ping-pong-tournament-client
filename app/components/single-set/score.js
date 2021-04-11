@@ -15,14 +15,18 @@ export default class SingleSetScoreComponent extends Component {
   }
 
   @action
-  increment(set, scoreParam, callback) {
+  increment() {
+    const { set, scoreParam, callback }
+
     set.set(scoreParam, set.get(scoreParam) + 1);
 
     callback();
   }
 
   @action
-  decrement(set, scoreParam, callback) {
+  decrement() {
+    const { set, scoreParam, callback };
+
     if (set.get(scoreParam) > 0) {
       set.set(scoreParam, set.get(scoreParam) - 1);
 
