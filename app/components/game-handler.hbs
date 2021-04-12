@@ -4,12 +4,12 @@
             <SingleSet 
                 @set={{set}} 
                 @setNumber={{increment index}} 
-                @callback={{this.settleGame}} 
+                @onSettleGame={{this.settleGame}} 
             />
         {{/each}}
     </div>
 
     {{#if @game.winner}}
-        <GameHandler::Result @game={{@game}} @callback={{@callback}} />
+        <GameHandler::Result @game={{@game}} @onSaveGame={{@onSaveGame}} />
     {{/if}}
 </div>

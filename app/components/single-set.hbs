@@ -8,7 +8,7 @@
         @set={{@set}}
         @scoreParam="player1Score"
         @isEnabled={{this.isEnabled}} 
-        @callback={{fn this.settleSet @set @callback}}
+        @onSettleSet={{fn this.settleSet @set @onSettleGame}}
     />
     <span data-test-label-span class="label-span">SET {{@setNumber}}</span>
     <SingleSet::Score 
@@ -16,6 +16,6 @@
         @set={{@set}} 
         @scoreParam="player2Score" 
         @isEnabled={{this.isEnabled}} 
-        @callback={{fn this.settleSet @set @callback}} 
+        @onSettleSet={{fn this.settleSet @set @onSettleGame}} 
     />
 </div>

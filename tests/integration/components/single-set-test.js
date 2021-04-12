@@ -110,15 +110,15 @@ module('Integration | Component | single-set', function (hooks) {
     test('it handles win of player1 correctly', async function (assert) {
       assert.expect(4);
 
-      this.set('callback', () => {
-        assert.ok(true, 'Callback has been invoked');
+      this.set('onSettleGame', () => {
+        assert.ok(true, 'onSettleGame has been invoked');
       });
 
       await render(hbs`
       <SingleSet 
         @set={{this.setRecord}} 
         @setNumber={{this.setNumber}} 
-        @callback={{this.callback}}
+        @onSettleGame={{this.onSettleGame}}
       />
     `);
 
@@ -144,15 +144,15 @@ module('Integration | Component | single-set', function (hooks) {
     test('it handles win of player2 correctly', async function (assert) {
       assert.expect(4);
 
-      this.set('callback', () => {
-        assert.ok(true, 'Callback has been invoked');
+      this.set('onSettleGame', () => {
+        assert.ok(true, 'onSettleGame has been invoked');
       });
 
       await render(hbs`
       <SingleSet 
         @set={{this.setRecord}} 
         @setNumber={{this.setNumber}} 
-        @callback={{this.callback}}
+        @onSettleGame={{this.onSettleGame}}
       />
     `);
 
@@ -178,13 +178,13 @@ module('Integration | Component | single-set', function (hooks) {
     test('Player needs advantage of at least two points to win', async function (assert) {
       assert.expect(3);
 
-      this.set('callback', () => {});
+      this.set('onSettleGame', () => {});
 
       await render(hbs`
       <SingleSet 
         @set={{this.setRecord}} 
         @setNumber={{this.setNumber}} 
-        @callback={{this.callback}}
+        @onSettleGame={{this.onSettleGame}}
       />
     `);
 

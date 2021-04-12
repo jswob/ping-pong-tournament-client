@@ -7,11 +7,11 @@ export default class SingleSetComponent extends Component {
   }
 
   @action
-  settleSet(set, callback) {
+  settleSet(set, onSettleGame) {
     const winnerIndex = set.settleWinner();
 
     if (winnerIndex != undefined) {
-      callback();
+      onSettleGame();
     }
   }
 }

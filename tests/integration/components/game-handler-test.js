@@ -21,7 +21,7 @@ module('Integration | Component | game-handler', function (hooks) {
     this.setProperties({
       store,
       game,
-      callback: () => {},
+      onSaveGame: () => {},
     });
   });
 
@@ -36,7 +36,7 @@ module('Integration | Component | game-handler', function (hooks) {
       <GameHandler 
         class={{this.className}} 
         @game={{this.game}} 
-        @callback={{this.callback}} 
+        @onSaveGame={{this.onSaveGame}} 
       />`);
 
     assert
@@ -55,12 +55,12 @@ module('Integration | Component | game-handler', function (hooks) {
   test('Result is only rendered when there is a winner', async function (assert) {
     assert.expect(2);
 
-    this.set('callback', () => {});
+    this.set('onSaveGame', () => {});
 
     await render(hbs`
       <GameHandler 
         @game={{this.game}} 
-        @callback={{this.callback}} 
+        @onSaveGame={{this.onSaveGame}} 
       />`);
 
     assert.dom('[data-test-game-handler] > [data-test-result]').doesNotExist();
@@ -71,17 +71,17 @@ module('Integration | Component | game-handler', function (hooks) {
     assert.dom('[data-test-game-handler] > [data-test-result]').exists();
   });
 
-  test('When game is finished it is possible to invoke callback on click', async function (assert) {
+  test('When game is finished it is possible to invoke onSaveGame on click', async function (assert) {
     assert.expect(1);
 
-    this.set('callback', () => {
-      assert.ok(true, 'It invokes callback');
+    this.set('onSaveGame', () => {
+      assert.ok(true, 'It invokes onSaveGame');
     });
 
     await render(hbs`
       <GameHandler 
         @game={{this.game}} 
-        @callback={{this.callback}} 
+        @onSaveGame={{this.onSaveGame}} 
       />`);
 
     this.set('game.result', '2/1');
@@ -100,7 +100,7 @@ module('Integration | Component | game-handler', function (hooks) {
     await render(hbs`
       <GameHandler 
         @game={{this.game}} 
-        @callback={{this.callback}} 
+        @onSaveGame={{this.onSaveGame}} 
       />`);
 
     assert.equal(
@@ -118,7 +118,7 @@ module('Integration | Component | game-handler', function (hooks) {
     await render(hbs`
       <GameHandler 
         @game={{this.game}} 
-        @callback={{this.callback}} 
+        @onSaveGame={{this.onSaveGame}} 
       />`);
 
     assert.dom('[data-test-single-set]').exists({ count: 1 });
@@ -149,7 +149,7 @@ module('Integration | Component | game-handler', function (hooks) {
     await render(hbs`
       <GameHandler 
         @game={{this.game}} 
-        @callback={{this.callback}} 
+        @onSaveGame={{this.onSaveGame}} 
       />`);
 
     assert.dom('[data-test-single-set]').exists({ count: 1 });

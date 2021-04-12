@@ -28,12 +28,12 @@ module('Integration | Component | game-handler/result', function(hooks) {
   test('it renders itself correctly', async function (assert) {
     assert.expect(8);
 
-    this.set('callback', () => {});
+    this.set('onSaveGame', () => {});
 
     await render(hbs`
       <GameHandler::Result 
         @game={{this.game}} 
-        @callback={{this.callback}} 
+        @onSaveGame={{this.onSaveGame}} 
       />`);
 
     assert.dom('[data-test-result]').exists().hasClass('result');
@@ -51,17 +51,17 @@ module('Integration | Component | game-handler/result', function(hooks) {
       .hasText('Finish');
   });
 
-  test('it invokes passed callback', async function (assert) {
+  test('it invokes passed onSaveGame', async function (assert) {
     assert.expect(1);
 
-    this.set('callback', () => {
-      assert.ok(true, "Callback has been invoked");
+    this.set('onSaveGame', () => {
+      assert.ok(true, "onSaveGame has been invoked");
     });
 
     await render(hbs`
       <GameHandler::Result 
         @game={{this.game}} 
-        @callback={{this.callback}} 
+        @onSaveGame={{this.onSaveGame}} 
       />`);
 
     await click('[data-test-finish-button]');

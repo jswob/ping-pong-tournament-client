@@ -20,11 +20,11 @@ module('Integration | Component | single-set/score', function (hooks) {
 
     const setRecord = store.createRecord('set', { game: game });
 
-    const callback = () => {};
+    const onSettleSet = () => {};
 
     this.setProperties({
       setRecord,
-      callback,
+      onSettleSet,
       isEnabled: true,
       scoreParam: 'player1Score',
     });
@@ -43,7 +43,7 @@ module('Integration | Component | single-set/score', function (hooks) {
         @set={{this.setRecord}} 
         @isEnabled={{this.isEnabled}}
         @scoreParam={{this.scoreParam}}
-        @callback={{this.callback}}  
+        @onSettleSet={{this.onSettleSet}}  
       />`
     );
 
@@ -88,7 +88,7 @@ module('Integration | Component | single-set/score', function (hooks) {
         @set={{this.setRecord}} 
         @isEnabled={{this.isEnabled}}
         @scoreParam={{this.scoreParam}}
-        @callback={{this.callback}}  
+        @onSettleSet={{this.onSettleSet}}  
       />`
     );
 
@@ -106,7 +106,7 @@ module('Integration | Component | single-set/score', function (hooks) {
         @set={{this.setRecord}} 
         @isEnabled={{this.isEnabled}}
         @scoreParam={{this.scoreParam}}
-        @callback={{this.callback}}  
+        @onSettleSet={{this.onSettleSet}}  
       />`
     );
 
@@ -129,8 +129,8 @@ module('Integration | Component | single-set/score', function (hooks) {
   test('It is possible to increment selected scoreParam', async function (assert) {
     assert.expect(3);
 
-    this.set('callback', (set) => {
-      assert.ok(true, 'Callback has been invoked');
+    this.set('onSettleSet', (set) => {
+      assert.ok(true, 'onSettleSet has been invoked');
     });
 
     await render(
@@ -139,7 +139,7 @@ module('Integration | Component | single-set/score', function (hooks) {
         @set={{this.setRecord}} 
         @isEnabled={{this.isEnabled}}
         @scoreParam={{this.scoreParam}}
-        @callback={{this.callback}}  
+        @onSettleSet={{this.onSettleSet}}  
       />`
     );
 
@@ -161,8 +161,8 @@ module('Integration | Component | single-set/score', function (hooks) {
   test('It is possible to decrement selected scoreParam', async function (assert) {
     assert.expect(3);
 
-    this.set('callback', () => {
-      assert.ok(true, 'Callback has been invoked');
+    this.set('onSettleSet', () => {
+      assert.ok(true, 'onSettleSet has been invoked');
     });
 
     await render(
@@ -171,7 +171,7 @@ module('Integration | Component | single-set/score', function (hooks) {
         @set={{this.setRecord}} 
         @isEnabled={{this.isEnabled}}
         @scoreParam={{this.scoreParam}}
-        @callback={{this.callback}}  
+        @onSettleSet={{this.onSettleSet}}  
       />`
     );
 
@@ -195,8 +195,8 @@ module('Integration | Component | single-set/score', function (hooks) {
   test('scoreParam cannot be decremented if it equals 0', async function (assert) {
     assert.expect(2);
 
-    this.set('callback', () => {
-      assert.ok(false, 'Callback cannot be invoked');
+    this.set('onSettleSet', () => {
+      assert.ok(false, 'onSettleSet cannot be invoked');
     });
 
     await render(
@@ -205,7 +205,7 @@ module('Integration | Component | single-set/score', function (hooks) {
         @set={{this.setRecord}} 
         @isEnabled={{this.isEnabled}}
         @scoreParam={{this.scoreParam}}
-        @callback={{this.callback}}  
+        @onSettleSet={{this.onSettleSet}}  
       />`
     );
 

@@ -3,5 +3,5 @@
 <PageLayout>
     <GameHandler::MainHeadline @players={{this.model.players}} />
 
-    <GameHandler @game={{this.model}} @callback={{perform this.saveGame this.model}} />
+    <GameHandler @game={{this.model}} @onSaveGame={{perform this.saveGame this.model}} />
 </PageLayout>
