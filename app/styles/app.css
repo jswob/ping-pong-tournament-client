@@ -13,6 +13,11 @@
 @import './components/setup-game-form.css';
 @import './components/setup-game-form/players-setting.css';
 @import './components/setup-game-form/game-settings.css';
+@import './components/game-handler.css';
+@import './components/game-handler/main-headline.css';
+@import './components/game-handler/result.css';
+@import './components/single-set.css';
+@import './components/single-set/score.css';
 
 button:focus,
 button:active,

@@ -1,0 +1,21 @@
+<div 
+    ...attributes 
+    data-test-single-set 
+    class="single-set {{if this.isEnabled "enabled" "disabled"}}"
+>
+    <SingleSet::Score 
+        data-test-player-1-score
+        @set={{@set}}
+        @scoreParam="player1Score"
+        @isEnabled={{this.isEnabled}} 
+        @onSettleSet={{fn this.settleSet @set @onSettleGame}}
+    />
+    <span data-test-label-span class="label-span">SET {{@setNumber}}</span>
+    <SingleSet::Score 
+        data-test-player-2-score
+        @set={{@set}} 
+        @scoreParam="player2Score" 
+        @isEnabled={{this.isEnabled}} 
+        @onSettleSet={{fn this.settleSet @set @onSettleGame}} 
+    />
+</div>

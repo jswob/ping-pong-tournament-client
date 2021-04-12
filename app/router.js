@@ -10,7 +10,8 @@ Router.map(function () {
   this.route('menu');
   this.route('players-manager');
 
-  this.route('casual', function() {
+  this.route('casual', function () {
     this.route('new');
+    this.route('play', { path: '/play/:game_id' });
   });
 });

@@ -76,7 +76,7 @@ module('Integration | Component | create-casual-game', function (hooks) {
     assert.expect(5);
 
     const testData = {
-      sets: 5,
+      amountOfSets: 5,
       pointsToWin: 20,
     };
 
@@ -92,7 +92,7 @@ module('Integration | Component | create-casual-game', function (hooks) {
         this.players.objectAt(1).nickname,
         'player2 is correctly set'
       );
-      assert.equal(settings.sets, testData.sets, 'sets is correctly set');
+      assert.equal(settings.amountOfSets, testData.amountOfSets, 'amountOfSets is correctly set');
       assert.equal(
         settings.pointsToWin,
         testData.pointsToWin,
@@ -112,7 +112,7 @@ module('Integration | Component | create-casual-game', function (hooks) {
     await click('[data-test-player2-option] .ember-basic-dropdown-trigger');
     await click('ul > li:last-child');
 
-    await fillIn('[data-test-sets-input]', testData.sets);
+    await fillIn('[data-test-sets-input]', testData.amountOfSets);
     await fillIn('[data-test-points-input]', testData.pointsToWin);
 
     await click('[data-test-submit-button]');
@@ -202,7 +202,7 @@ module('Integration | Component | create-casual-game', function (hooks) {
         .hasText("Player2 can't be the same as Player1");
     });
 
-    test('sets must be integer greater than 0', async function (assert) {
+    test('amountOfSets must be integer greater than 0', async function (assert) {
       assert.expect(8);
 
       assert.dom('[data-test-validation-error]').doesNotExist();
@@ -214,7 +214,7 @@ module('Integration | Component | create-casual-game', function (hooks) {
       assert
         .dom('[data-test-sets-option] [data-test-validation-error]')
         .exists()
-        .hasText('Sets must be a number');
+        .hasText('Amount of sets must be a number');
 
       await fillIn('[data-test-sets-input]', 0);
 
@@ -223,7 +223,7 @@ module('Integration | Component | create-casual-game', function (hooks) {
       assert
         .dom('[data-test-sets-option] [data-test-validation-error]')
         .exists()
-        .hasText('Sets must be greater than 0');
+        .hasText('Amount of sets must be greater than 0');
 
       await fillIn('[data-test-sets-input]', 1);
 

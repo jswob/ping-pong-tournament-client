@@ -3,15 +3,15 @@
         data-test-sets-option
         @title="Number of sets" 
         @errors={{@changeset.errors}} 
-        @key="sets"
+        @key="amountOfSets"
     >
         <input 
             data-test-sets-input
             type="number" 
             min="1"
             max="9999" 
-            value={{@changeset.sets}} 
-            {{on "change" (fn @update @changeset "sets" )}} 
+            value={{@changeset.amountOfSets}} 
+            {{on "change" (fn @update @changeset "amountOfSets" )}} 
         />
     </SetupGameForm::Option>
 

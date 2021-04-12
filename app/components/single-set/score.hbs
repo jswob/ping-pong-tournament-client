@@ -1,0 +1,23 @@
+<div ...attributes data-test-score class="single-set-score {{this.statusClass}}">
+    {{#if @isEnabled}}
+        <button 
+            data-test-minus-icon 
+            class="icon minus-icon" 
+            type="button" 
+            {{on 'click' this.decrement}}
+        >
+            {{md-icon "remove_circle"}}
+        </button>
+    {{/if}}
+    <span data-test-value-span class="value-span">{{get @set @scoreParam}}</span>
+    {{#if @isEnabled}}
+        <button 
+            data-test-plus-icon 
+            class="icon plus-icon" 
+            type="button" 
+            {{on 'click' this.increment}}
+        >
+            {{md-icon "add_circle"}}
+        </button>
+    {{/if}}
+</div>

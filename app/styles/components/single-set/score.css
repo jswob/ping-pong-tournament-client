@@ -1,0 +1,35 @@
+.single-set-score {
+    @apply border-2 h-12 flex justify-center items-stretch text-center rounded-lg bg-white;
+}
+
+.single-set-score.winner {
+    @apply bg-green-500;
+}
+
+.single-set-score.loser {
+    @apply bg-red-500;
+}
+
+.single-set-score > .value-span {
+    @apply text-center flex items-center justify-center w-4/12 font-bold;
+}
+
+.single-set-score > .icon {
+    @apply w-4/12 flex items-center justify-center cursor-pointer;
+}
+
+.single-set-score > .icon > i {
+    transition: 0.5s;
+
+    @apply text-xl;
+}
+
+.single-set-score > .icon:hover > i {
+    @apply text-2xl;
+}
+
+.single-set-score > .icon:active > i {
+    transition: 0s;
+
+    @apply text-3xl;
+}

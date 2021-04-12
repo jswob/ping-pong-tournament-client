@@ -13,7 +13,7 @@ module(
         class: 'hello',
         changeset: {
           errors: [],
-          sets: null,
+          amountOfSets: null,
           pointsToWin: null,
         },
         update: () => {},
@@ -58,7 +58,7 @@ module(
 
       this.set('changeset', {
         errors: [
-          { key: 'sets', validation: 'dsafas' },
+          { key: 'amountOfSets', validation: 'dsafas' },
           { key: 'pointsToWin', validation: ['hello', 'world'] },
         ],
       });
@@ -96,7 +96,7 @@ module(
 
       this.set('update', (changeset, key, event) => {
         assert.ok(changeset);
-        assert.equal(key, 'sets');
+        assert.equal(key, 'amountOfSets');
         assert.ok(event);
       });
 

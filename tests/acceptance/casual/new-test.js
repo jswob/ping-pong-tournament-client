@@ -16,27 +16,25 @@ module('Acceptance | casual/new', function (hooks) {
   });
 
   test('User can create a new casual game', async function (assert) {
-    assert.expect(6);
+    assert.expect(7);
+
+    const schema = this.server.schema.games;
 
     const testData = {
       player1: 'player1',
       player2: 'player2',
-      sets: 4,
+      amountOfSets: 4,
       pointsToWin: 27,
     };
 
     this.server.createList('player', 2);
 
-    let games;
-
     const store = this.owner.lookup('service:store');
 
     await visit('/casual/new');
 
-    games = await store.peekAll('game');
-
     assert.equal(
-      games.length,
+      schema.all().length,
       0,
       'In the beginnig there is no game record in store'
     );
@@ -49,37 +47,34 @@ module('Acceptance | casual/new', function (hooks) {
     await fillIn('.ember-basic-dropdown-content input', testData.player2);
     await click('ul > li');
 
-    await fillIn('[data-test-sets-input]', testData.sets);
+    await fillIn('[data-test-sets-input]', testData.amountOfSets);
 
     await fillIn('[data-test-points-input]', testData.pointsToWin);
 
     await click('[data-test-submit-button]');
 
-    games = await store.peekAll('game');
-
     assert.equal(
-      games.length,
+      schema.all().length,
       1,
       'After submiting form game record has been created'
     );
 
-    const game = games.firstObject;
+    const game = schema.all().models[0];
+
+    assert.equal(game.playerIds[0], '1', 'player1 is correct');
+    assert.equal(game.playerIds[1], '2', 'player2 is correct');
 
     assert.equal(
-      game.player1.content.nickname,
-      testData.player1,
-      'player1 is correct'
+      game.amountOfSets,
+      testData.amountOfSets,
+      'amountOfSets is correct'
     );
-    assert.equal(
-      game.player2.content.nickname,
-      testData.player2,
-      'player2 is correct'
-    );
-    assert.equal(game.sets, testData.sets, 'sets is correct');
     assert.equal(
       game.pointsToWin,
       testData.pointsToWin,
       'pointsToWin is correct'
     );
+
+    assert.equal(currentURL(), `/casual/play/${game.id}`);
   });
 });

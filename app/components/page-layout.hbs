@@ -1,4 +1,6 @@
-<div ...attributes class="page-layout">
-    <h1 data-test-main-header class="main-header">{{@title}}</h1>
+<div ...attributes data-test-page-layout class="page-layout">
+    {{#if @title}}
+        <h1 data-test-main-header class="main-header">{{@title}}</h1>
+    {{/if}}
     {{yield}}
 </div>

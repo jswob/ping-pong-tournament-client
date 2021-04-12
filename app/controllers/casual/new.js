@@ -1,19 +1,25 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { dropTask } from 'ember-concurrency';
 
 export default class CasualNewController extends Controller {
   @service store;
 
-  @action
-  createGame(settings) {
+  @dropTask
+  *createGame(settings) {
     const { player1, player2 } = settings;
 
     const id = `${player1.nickname}vs${player2.nickname}-${Date.now()}`;
 
-    this.store.createRecord('game', { ...settings, id: id });
+    let game = this.store.createRecord('game', {
+      ...settings,
+      id: id,
+      players: [player1, player2],
+    });
 
-    // TO DO
-    // this.transitionToRoute('some');
+    game = yield game.save();
+
+    return this.transitionToRoute('casual.play', game);
   }
 }
