@@ -4,15 +4,19 @@
     @route="players.player.statistics" 
     @model={{@player}}
 >
-    <div data-test-score-wrapper class="score-wrapper">
-        <span data-test-score-value class="value">
-            {{@player.gamesWon.length}}
-        </span>
-        <span data-test-score-icon class="icon">
-            {{md-icon "star_rate"}}
-        </span>
-    </div>
-    <h5 data-test-player-nickname class="player-nickname">
+    <ValueWithIcon 
+        data-test-place-wrapper
+        class="place-wrapper" 
+        @value={{@place}} 
+        @icon="crown" 
+    />
+    <span data-test-player-nickname class="player-nickname">
         {{@player.nickname}}
-    </h5>
+    </span>
+    <ValueWithIcon 
+        data-test-score-wrapper
+        class="score-wrapper" 
+        @value={{@player.gamesWon.length}} 
+        @icon="trophy" 
+    />
 </LinkTo>

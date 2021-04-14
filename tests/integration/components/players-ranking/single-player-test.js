@@ -22,14 +22,18 @@ module(
 
       const playerRecord = await store.findRecord('player', players[0].id);
 
+      this.setProperties({
+        player: playerRecord,
+        place: '1',
+      });
       this.set('player', playerRecord);
     });
 
     test('it renders itself correctly', async function (assert) {
-      assert.expect(13);
+      assert.expect(17);
 
       await render(
-        hbs`<PlayersRanking::SinglePlayer @player={{this.player}} />`
+        hbs`<PlayersRanking::SinglePlayer @player={{this.player}} @place={{this.place}} />`
       );
 
       assert
@@ -38,27 +42,36 @@ module(
         .hasClass('single-player');
 
       assert
-        .dom('[data-test-single-player] > [data-test-score-wrapper]')
+        .dom('[data-test-single-player] > [data-test-place-wrapper]')
         .exists()
-        .hasClass('score-wrapper');
+        .hasClass('place-wrapper')
+        .hasText(this.place);
 
-      assert
-        .dom('[data-test-score-wrapper] > [data-test-score-value]')
-        .exists()
-        .hasClass('value')
-        .hasText(String(this.player.gamesWon.length));
-
-      assert
-        .dom('[data-test-score-wrapper] > [data-test-score-icon]')
-        .exists()
-        .hasClass('icon')
-        .hasText('star_rate');
+      assert.dom('[data-test-place-wrapper] svg').hasClass('fa-crown');
 
       assert
         .dom('[data-test-single-player] > [data-test-player-nickname]')
         .exists()
         .hasClass('player-nickname')
         .hasText(this.player.nickname);
+
+      assert
+        .dom('[data-test-single-player] > [data-test-score-wrapper]')
+        .exists()
+        .hasClass('score-wrapper');
+
+      assert
+        .dom('[data-test-score-wrapper] > [data-test-value]')
+        .exists()
+        .hasClass('value')
+        .hasText(String(this.player.gamesWon.length));
+
+      assert
+        .dom('[data-test-score-wrapper] > [data-test-icon]')
+        .exists()
+        .hasClass('icon');
+
+      assert.dom('[data-test-score-wrapper] svg').hasClass('fa-trophy');
     });
   }
 );
