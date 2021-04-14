@@ -1,0 +1,7 @@
+<div data-test-ranking-players-list class="ranking-players-list">
+    {{#each this.playersRanks as |player index|}}
+        {{#if (does-it-includes player.nickname @filterQuery)}}
+            <PlayersRanking::SinglePlayer @player={{player}} @place={{increment index}} />
+        {{/if}}
+    {{/each}}
+</div>
