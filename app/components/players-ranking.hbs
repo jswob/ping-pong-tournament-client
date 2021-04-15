@@ -1,0 +1,11 @@
+<div data-test-players-ranking class="players-ranking">
+    <input 
+        data-test-filter-input 
+        class="filter-input" 
+        value={{@filterQuery}} 
+        placeholder="Find user"
+        {{on "change" @updateFilterQuery}} 
+    />
+
+    <PlayersRanking::PlayersList @players={{@players}} @filterQuery={{@filterQuery}} />
+</div>
