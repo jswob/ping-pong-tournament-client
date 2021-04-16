@@ -1,7 +1,7 @@
 {{#with (changeset this.player this.PlayerValidations) as |changeset|}}
     <form ...attributes {{on 'submit' (perform this.createPlayer changeset)}} class="create-player-form">
-        <div class="content {{if @createMode "create-mode"}}">
-            {{#if @createMode}}
+        <div class="content {{if this.isCreateModeOn "create-mode"}}">
+            {{#if this.isCreateModeOn}}
                 <input 
                     data-test-nickname-input 
                     class="nickname-input" 
@@ -20,15 +20,15 @@
                 <button 
                     data-test-switch-button 
                     class="switch-button" 
-                    type="button" 
-                    {{on "click" @switchMode}}
+                    type="button"
+                    {{on "click" this.switchCreateMode}}
                 >
                     Add player
                 </button>
             {{/if}}
         </div>
         
-        {{#if @createMode}}
+        {{#if this.isCreateModeOn}}
             <ValidationErrors @errors={{changeset.errors}} @key="nickname" />
         {{/if}}
     </form>

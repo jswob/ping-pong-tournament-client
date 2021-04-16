@@ -13,6 +13,14 @@ export default class CreatePlayerFormComponent extends Component {
   @tracked
   player = { nickname: null };
 
+  @tracked
+  isCreateModeOn = false;
+
+  @action
+  switchCreateMode() {
+    this.isCreateModeOn = !this.isCreateModeOn;
+  }
+
   @dropTask
   *createPlayer(changeset, event) {
     event.preventDefault();
@@ -25,7 +33,7 @@ export default class CreatePlayerFormComponent extends Component {
 
     changeset.execute();
 
-    this.args.switchMode();
+    this.switchCreateMode();
 
     yield this.store.createRecord('player', this.player).save();
 
