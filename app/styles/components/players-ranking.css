@@ -1,0 +1,33 @@
+.players-ranking {
+    @apply flex flex-col place-items-center;
+}
+
+.players-ranking > .ranking-players-list {
+    @apply w-5/6;
+}
+
+.players-ranking > .filter-input {
+    border: 2px solid black;
+    padding: 4px 10px;
+    transition: 0.5s;
+
+    @apply text-xl rounded-default mb-4 mt-2;
+}
+
+.players-ranking > .filter-input::placeholder {
+    transition: 0.5s;
+}
+
+.players-ranking > .filter-input:focus{
+    @apply bg-gray-300;
+}
+
+.players-ranking > .filter-input:-ms-keyboard-active{
+    transition: 0s;
+
+    @apply bg-gray-500;
+}
+
+.players-ranking > .filter-input:focus::placeholder{
+    @apply text-gray-700;
+}

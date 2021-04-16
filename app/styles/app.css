@@ -18,6 +18,10 @@
 @import './components/game-handler/result.css';
 @import './components/single-set.css';
 @import './components/single-set/score.css';
+@import './components/players-ranking.css';
+@import './components/players-ranking/players-list.css';
+@import './components/players-ranking/single-player.css';
+@import './components/value-with-icon.css';
 
 button:focus,
 button:active,
