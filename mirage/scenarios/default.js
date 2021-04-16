@@ -1,6 +1,6 @@
 export default function (server) {
-  const numberOfPlayers = 10;
-  const numberOfGames = 200;
+  const numberOfPlayers = 5;
+  const numberOfGames = 20;
 
   const players = server.createList('player', numberOfPlayers);
 
