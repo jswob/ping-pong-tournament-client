@@ -1,4 +1,8 @@
-<div ...attributes data-test-value-with-icon class="value-with-icon-wrapper">
+<div 
+    ...attributes 
+    data-test-value-with-icon 
+    class="value-with-icon-wrapper {{if @reverse "flex-row-reverse" "flex-row"}}"
+>
     <span data-test-value class="value">
         {{@value}}
     </span>
