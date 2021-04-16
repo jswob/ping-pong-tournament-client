@@ -85,7 +85,7 @@ module(
     });
 
     test('it filters players correctly', async function (assert) {
-      assert.expect(3);
+      assert.expect(4);
 
       const filterQuery = 'player1';
 
@@ -101,6 +101,10 @@ module(
         .dom('[data-test-single-player]')
         .exists({ count: 1 })
         .includesText(this.players.objectAt(0).nickname);
+
+      assert
+        .dom('[data-test-single-player] > [data-test-player-nickname] > strong')
+        .hasText(this.filterQuery, "It highlights filterQuery");
 
       assert
         .dom(
