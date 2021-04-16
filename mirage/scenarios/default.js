@@ -1,6 +1,6 @@
 export default function (server) {
-  const numberOfPlayers = getRandomInteger(2, 7);
-  const numberOfGames = getRandomInteger(3, 10);
+  const numberOfPlayers = 6;
+  const numberOfGames = 10;
 
   const players = server.createList('player', numberOfPlayers);
 
