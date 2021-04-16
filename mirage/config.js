@@ -1,19 +1,31 @@
 import ENV from 'ping-pong-tournament-client/config/environment';
 
+function serializePlayerAttrs(attrs) {
+  return {
+    ...attrs,
+    gamesPlayed: attrs.gamesPlayedIds,
+    gamesWon: attrs.gamesWonIds,
+  };
+}
+
 export default function () {
   this.urlPrefix = `${ENV.api.host}/${ENV.api.namespace}`;
 
   this.get('/players', (schema, _request) => {
-    const players = schema.players.all().models;
+    let players = schema.players.all().models;
 
     return {
-      players: players,
+      players: players.map(({ attrs }) => {
+        return serializePlayerAttrs(attrs);
+      }),
     };
   });
 
-  this.get('/players:id', (schema, { params }) => {
+  this.get('/players/:id', (schema, { params }) => {
+    const playerAttrs = schema.players.find(params.id).attrs;
+
     return {
-      players: schema.players.find(params.id),
+      player: serializePlayerAttrs(playerAttrs),
     };
   });
 
