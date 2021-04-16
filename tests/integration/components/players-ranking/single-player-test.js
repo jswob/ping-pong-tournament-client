@@ -73,5 +73,55 @@ module(
 
       assert.dom('[data-test-score-wrapper] svg').hasClass('fa-trophy');
     });
+
+    test('it highlights nickname properly', async function (assert) {
+      assert.expect(2);
+
+      this.set('player.nickname', 'anna');
+      this.set('highlight', 'n');
+
+      await render(hbs`
+        <PlayersRanking::SinglePlayer 
+          @player={{this.player}} 
+          @place={{this.place}} 
+          @highlight={{this.highlight}} 
+        />`);
+
+      assert.dom('[data-test-player-nickname]').hasText(this.player.nickname);
+
+      assert
+        .dom('[data-test-player-nickname] > strong')
+        .hasText(this.highlight);
+    });
+
+    test('it has class according to place', async function (assert) {
+      assert.expect(6);
+
+      this.set('place', 1);
+
+      await render(hbs`
+        <PlayersRanking::SinglePlayer 
+          @player={{this.player}} 
+          @place={{this.place}} 
+        />`);
+
+      assert.dom('[data-test-single-player]').hasClass('first-place');
+
+      this.set('place', 2);
+
+      assert.dom('[data-test-single-player]').hasClass('second-place');
+
+      this.set('place', 3);
+
+      assert.dom('[data-test-single-player]').hasClass('third-place');
+
+      this.set('place', 4);
+
+      assert
+        .dom('[data-test-single-player]')
+        .doesNotHaveClass('first-place')
+        .doesNotHaveClass('second-place')
+        .doesNotHaveClass('third-place');
+    });
   }
 );

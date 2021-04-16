@@ -1,6 +1,6 @@
 <LinkTo 
     data-test-single-player 
-    class="single-player" 
+    class="single-player {{this.placeClass}}" 
     @route="players.player.statistics" 
     @model={{@player}}
 >
@@ -11,11 +11,12 @@
         @icon="crown" 
     />
     <span data-test-player-nickname class="player-nickname">
-        {{@player.nickname}}
+        {{highlight @player.nickname @highlight}}
     </span>
     <ValueWithIcon 
         data-test-score-wrapper
-        class="score-wrapper" 
+        class="score-wrapper"
+        @reverse={{true}} 
         @value={{@player.gamesWon.length}} 
         @icon="trophy" 
     />
