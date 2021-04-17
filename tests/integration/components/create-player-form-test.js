@@ -1,16 +1,12 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, fillIn, triggerKeyEvent } from '@ember/test-helpers';
+import { render, click, fillIn } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 
 module('Integration | Component | create-player-form', function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
-
-  hooks.beforeEach(function () {
-    this.setProperties({ createMode: false, testAction: () => true });
-  });
 
   test('It renders itself correctly', async function (assert) {
     assert.expect(16);
@@ -22,7 +18,7 @@ module('Integration | Component | create-player-form', function (hooks) {
     this.setProperties(testData);
 
     await render(
-      hbs`<CreatePlayerForm data-test-create-player-form class={{this.class}} @createMode={{this.createMode}} @switchMode={{this.testAction}} />`
+      hbs`<CreatePlayerForm data-test-create-player-form class={{this.class}} />`
     );
 
     assert
@@ -39,7 +35,7 @@ module('Integration | Component | create-player-form', function (hooks) {
     assert.dom('[data-test-nickname-input').doesNotExist();
     assert.dom('[data-test-submit-button]').doesNotExist();
 
-    this.set('createMode', true);
+    await click('[data-test-switch-button]');
 
     assert.dom('[data-test-switch-button]').doesNotExist();
     assert
@@ -62,21 +58,15 @@ module('Integration | Component | create-player-form', function (hooks) {
 
     const store = this.owner.lookup('service:store');
 
-    this.set('createMode', true);
-
     assert.equal(
       store.findAll('player').length,
       0,
       'By default there are no players'
     );
 
-    await render(
-      hbs`<CreatePlayerForm 
-            data-test-create-player-form 
-            @createMode={{this.createMode}} 
-            @switchMode={{this.testAction}} 
-          />`
-    );
+    await render(hbs`<CreatePlayerForm data-test-create-player-form />`);
+
+    await click('[data-test-switch-button]');
 
     await click('[data-test-submit-button]');
 
@@ -94,8 +84,6 @@ module('Integration | Component | create-player-form', function (hooks) {
 
     const store = this.owner.lookup('service:store');
 
-    this.set('createMode', true);
-
     assert.equal(
       store.findAll('player').length,
       0,
@@ -109,6 +97,8 @@ module('Integration | Component | create-player-form', function (hooks) {
             @switchMode={{this.testAction}} 
           />`
     );
+
+    await click('[data-test-switch-button]');
 
     await fillIn('[data-test-nickname-input]', userData.nickname);
 
