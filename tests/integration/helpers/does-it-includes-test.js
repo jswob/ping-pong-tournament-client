@@ -16,7 +16,7 @@ module('Integration | Helper | does-it-includes', function(hooks) {
 
     assert.equal(this.element.textContent, "true");
 
-    this.set('query', '32');
+    this.set('query', 32);
 
     assert.equal(this.element.textContent, 'false');
   });
