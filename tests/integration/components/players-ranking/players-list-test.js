@@ -87,7 +87,7 @@ module(
     test('it filters players correctly', async function (assert) {
       assert.expect(4);
 
-      const filterQuery = 'player1';
+      const filterQuery = this.players.objectAt(0).nickname;
 
       this.set('filterQuery', filterQuery);
 
@@ -100,7 +100,7 @@ module(
       assert
         .dom('[data-test-single-player]')
         .exists({ count: 1 })
-        .includesText(this.players.objectAt(0).nickname);
+        .includesText(filterQuery);
 
       assert
         .dom('[data-test-single-player] > [data-test-player-nickname] > strong')

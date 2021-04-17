@@ -22,6 +22,8 @@ module('Acceptance | players/ranking', function (hooks) {
       players: [players[3], players[4]],
       winner: players[4],
     });
+
+    this.set('players', players);
   });
 
   test('It is possible to visit /players/ranking', async function (assert) {
@@ -53,23 +55,25 @@ module('Acceptance | players/ranking', function (hooks) {
 
     await visit('/players/ranking');
 
-    assert.dom('[data-test-single-player]:first-child').includesText('player2');
+    assert
+      .dom('[data-test-single-player]:first-child')
+      .includesText(this.players[1].nickname);
 
     assert
       .dom('[data-test-single-player]:nth-child(2)')
-      .includesText('player5');
+      .includesText(this.players[4].nickname);
 
     assert
       .dom('[data-test-single-player]:nth-child(3)')
-      .includesText('player1');
+      .includesText(this.players[0].nickname);
 
     assert
       .dom('[data-test-single-player]:nth-child(4)')
-      .includesText('player3');
+      .includesText(this.players[2].nickname);
 
     assert
       .dom('[data-test-single-player]:nth-child(5)')
-      .includesText('player4');
+      .includesText(this.players[3].nickname);
   });
 
   test('It is possible to filter players list', async function (assert) {
@@ -77,7 +81,7 @@ module('Acceptance | players/ranking', function (hooks) {
 
     await visit('/players/ranking');
 
-    const inputValue = 'player1';
+    const inputValue = this.players[0].nickname;
 
     await fillIn('[data-test-filter-input]', inputValue);
 

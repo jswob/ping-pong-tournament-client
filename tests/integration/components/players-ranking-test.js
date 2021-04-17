@@ -18,7 +18,7 @@ module('Integration | Component | players-ranking', function (hooks) {
     this.setProperties({
       players: playersRecords,
       updateFilterQuery: () => {},
-      filterQuery: 'player',
+      filterQuery: '',
     });
   });
 
