@@ -15,7 +15,7 @@ module('Acceptance | casual/play', function (hooks) {
       amountOfSets: 2,
     });
 
-    this.setProperties({ gameId: id, pointsToWin: pointsToWin });
+    this.setProperties({ gameId: id, pointsToWin: pointsToWin, players: players });
   });
 
   test('It is possible to visit /casual/play', async function (assert) {
@@ -27,7 +27,7 @@ module('Acceptance | casual/play', function (hooks) {
   });
 
   test('/casual/play renders its layout correctly', async function (assert) {
-    assert.expect(4);
+    assert.expect(6);
 
     await visit(`/casual/play/${this.gameId}`);
 
@@ -36,7 +36,9 @@ module('Acceptance | casual/play', function (hooks) {
     assert
       .dom('[data-test-main-headline]')
       .exists()
-      .hasText('player1 VS player2');
+      .includesText(this.players[0].nickname)
+      .includesText(' VS ')
+      .includesText(this.players[1].nickname)
 
     assert.dom('[data-test-game-handler]').exists();
   });

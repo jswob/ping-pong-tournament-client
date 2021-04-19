@@ -1,0 +1,40 @@
+.single-player {
+    transition: 0.3s;
+
+    @apply w-full bg-gray-400 flex flex-row text-xl items-stretch mt-4 p-4 rounded-default;
+}
+
+.single-player:hover {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);
+}
+
+.single-player .icon {
+    @apply text-yellow-600;
+}
+
+.single-player.first-place {
+    background-color: gold;
+}
+.single-player.second-place {
+    background-color: silver;
+}
+.single-player.third-place {
+    background-color: #cd7f32;
+}
+
+.single-player.first-place .icon,
+.single-player.second-place .icon {
+    @apply text-yellow-700;
+}
+
+.single-player.third-place .icon {
+    @apply text-yellow-400;
+}
+
+.single-player > .value-with-icon-wrapper {
+    @apply w-2/12;
+}
+
+.single-player > .player-nickname {
+    @apply w-10/12;
+}

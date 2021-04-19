@@ -1,0 +1,11 @@
+.value-with-icon-wrapper {
+    @apply flex items-stretch text-center;
+}
+
+.value-with-icon-wrapper > .icon {
+    text-shadow: 0 13.36px 8.896px #c4b59d,0 -2px 1px #fff;
+}
+
+.value-with-icon-wrapper > .value {
+    @apply font-semibold flex-grow-default;
+}

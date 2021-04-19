@@ -20,14 +20,14 @@ module('Acceptance | casual/new', function (hooks) {
 
     const schema = this.server.schema.games;
 
+    const [player1, player2] = this.server.createList('player', 2);
+
     const testData = {
-      player1: 'player1',
-      player2: 'player2',
+      player1: player1.nickname,
+      player2: player2.nickname,
       amountOfSets: 4,
       pointsToWin: 27,
     };
-
-    this.server.createList('player', 2);
 
     const store = this.owner.lookup('service:store');
 
@@ -75,6 +75,6 @@ module('Acceptance | casual/new', function (hooks) {
       'pointsToWin is correct'
     );
 
-    assert.equal(currentURL(), `/casual/play/${game.id}`);
+    assert.equal(currentURL(), '/casual/play/' + game.id.replaceAll(' ', '%20'))
   });
 });

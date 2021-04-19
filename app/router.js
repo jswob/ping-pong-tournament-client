@@ -14,4 +14,12 @@ Router.map(function () {
     this.route('new');
     this.route('play', { path: '/play/:game_id' });
   });
+
+  this.route('players', function() {
+    this.route('ranking');
+
+    this.route('player', {path: '/:player_id'}, function() {
+      this.route('statistics');
+    });
+  });
 });

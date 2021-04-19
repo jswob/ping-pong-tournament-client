@@ -16,7 +16,7 @@ module('Acceptance | menu', function (hooks) {
   });
 
   test('/menu route presents itself correctly', async function (assert) {
-    assert.expect(7);
+    assert.expect(9);
 
     await visit('/menu');
 
@@ -25,9 +25,11 @@ module('Acceptance | menu', function (hooks) {
       .dom('[data-test-menu-page-layout] > [data-test-main-header]')
       .hasText('Ping Pong Tournament');
 
-    assert.dom('[data-test-menu-option]').exists({ count: 2 });
+    assert.dom('[data-test-menu-option]').exists({ count: 3 });
 
     assert.dom('[data-test-casual-new-link]').exists().hasText('New Game');
+
+    assert.dom('[data-test-players-ranking-link]').exists().hasText('Ranking');
 
     assert
       .dom('[data-test-players-manager-link]')
@@ -53,5 +55,15 @@ module('Acceptance | menu', function (hooks) {
     await click('[data-test-players-manager-link]');
 
     assert.equal(currentURL(), '/players-manager');
+  });
+
+  test('User can move to /players/ranking from /menu', async function (assert) {
+    assert.expect(1);
+
+    await visit('/menu');
+
+    await click('[data-test-players-ranking-link]');
+
+    assert.equal(currentURL(), '/players/ranking');
   });
 });

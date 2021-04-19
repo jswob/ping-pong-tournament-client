@@ -1,0 +1,23 @@
+<LinkTo 
+    data-test-single-player 
+    class="single-player {{this.placeClass}}" 
+    @route="players.player.statistics" 
+    @model={{@player}}
+>
+    <ValueWithIcon 
+        data-test-place-wrapper
+        class="place-wrapper" 
+        @value={{@place}} 
+        @icon="crown" 
+    />
+    <span data-test-player-nickname class="player-nickname">
+        {{highlight @player.nickname @highlight}}
+    </span>
+    <ValueWithIcon 
+        data-test-score-wrapper
+        class="score-wrapper"
+        @reverse={{true}} 
+        @value={{@player.gamesWon.length}} 
+        @icon="trophy" 
+    />
+</LinkTo>
