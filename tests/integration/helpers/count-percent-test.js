@@ -16,4 +16,25 @@ module('Integration | Helper | count-percent', function(hooks) {
 
     assert.equal(this.element.textContent.trim(), '25%');
   });
+
+  test('it handles 0 correctly', async function (assert) {
+    assert.expect(3);
+
+    this.set('number1', '0');
+    this.set('number2', '1');
+
+    await render(hbs`{{count-percent this.number1 this.number2}}`);
+
+    assert.equal(this.element.textContent.trim(), '0%');
+
+    this.set('number1', '1');
+    this.set('number2', '0');
+
+    assert.equal(this.element.textContent.trim(), '0%');
+
+    this.set('number1', '0');
+    this.set('number2', '0');
+
+    assert.equal(this.element.textContent.trim(), '0%');
+  });
 });
