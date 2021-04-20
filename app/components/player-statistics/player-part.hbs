@@ -1,0 +1,22 @@
+{{#let this.gamesPlayed this.gamesWon as |gamesPlayed gamesWon|}}
+    <div data-test-player-part class="player-part">
+        <h3 data-test-headline class="headline">Statistics</h3>
+
+        <table data-test-statistics-table class="statistics-table">
+            <tbody>
+                <tr>
+                    <td>Games Played:</td>
+                    <td>{{gamesPlayed}}</td>
+                </tr>
+                <tr>
+                    <td>Games Won:</td>
+                    <td>{{gamesWon}}</td>
+                </tr>
+                <tr>
+                    <td>Win ratio:</td>
+                    <td>{{count-percent gamesPlayed gamesWon}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{{/let}}
