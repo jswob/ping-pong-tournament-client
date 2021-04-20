@@ -7,6 +7,8 @@ module('Integration | Helper | count-percent', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it works correctly', async function(assert) {
+    assert.expect(1);
+
     this.set('number1', '12');
     this.set('number2', '3');
 
