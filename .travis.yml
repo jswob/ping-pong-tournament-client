@@ -20,7 +20,6 @@ env:
 branches:
   only:
     - master
-    - github-actions
 
 script:
   - npm test
