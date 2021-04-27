@@ -1,0 +1,22 @@
+<div data-test-player-part class="player-part">
+    <h3 data-test-headline class="headline">Statistics</h3>
+
+    <table data-test-statistics-table class="statistics-table">
+        <tbody>
+            <tr data-test-games-played>
+                <td>Games Played:</td>
+                <td>{{this.gamesPlayed}}</td>
+            </tr>
+            <tr data-test-games-won>
+                <td>Games Won:</td>
+                <td>{{this.gamesWon}}</td>
+            </tr>
+            <tr data-test-win-ratio>
+                <td>Win ratio:</td>
+                <td class={{this.rangeClass}}>
+                    {{this.winRatio}}%
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
